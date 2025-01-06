@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Ricardo Pu">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://ricardopotter.github.io/RicardoBlog/2025/01/06/code-with-mosh-in-cpp-part-one/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="What is CPPRecommended IDE: Clion Cpp executable: Cpp 20 A project have a unique main file ended with .cpp postfix. Case sensitive language - CPP Type of value the function gonna return, followed by f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Code with Mosh in CPP Part One">
+<meta property="og:url" content="https://ricardopotter.github.io/RicardoBlog/2025/01/06/Code-with-Mosh-in-CPP-Part-One/index.html">
+<meta property="og:site_name" content="Ricardo Pu&#39;s Blog">
+<meta property="og:description" content="What is CPPRecommended IDE: Clion Cpp executable: Cpp 20 A project have a unique main file ended with .cpp postfix. Case sensitive language - CPP Type of value the function gonna return, followed by f">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-01-06T15:45:03.000Z">
+<meta property="article:modified_time" content="2025-01-06T16:21:36.127Z">
+<meta property="article:author" content="Ricardo Pu">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg">
+    <meta name="theme-color" content="#008080">
+    <link rel="shortcut icon" href="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Code with Mosh in CPP Part One -
+        
+        Ricardo&#39;s Blog
+    </title>
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/RicardoBlog/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/RicardoBlog/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    
+        
+<script src="/RicardoBlog/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"ricardopotter.github.io","root":"/RicardoBlog/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":5,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#008080","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Ricardo's Blog","subtitle":{"text":["躲进小楼成一统","汉堡中的生菜","乌鸦的世界天鹅也有罪"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/RicardoMiles","instagram":"https://www.instagram.com/ricardomilesgarcia/","zhihu":null,"twitter":null,"email":"pujinjian@hotmail.com","steam":"https://steamcommunity.com/profiles/76561198400981711/","weibo":"https://weibo.com/u/3226308805"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-solid fa-folder"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/About","Github":"https://github.com/RicardoMiles","Github2":"https://github.com/RicardoPotter","Blog":"https://ricardopotter.github.io/","Friends":"/Links"}},"Links":{"icon":"fa-regular fa-link","submenus":{"子昂的博客":"https://supgoon.com/","Google":"https://google.com","ChatGPT":"https://chatgpt.com/"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":"躲进小楼成一统","show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"Links":{"path":"/links","icon":"fa-regular fa-link"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":10}},"footerStart":"2024/02/19 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Ricardo&#39;s Blog
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [40,0],
+                translateZ: 0,
+                opacity: [0,1],
+                filter: ['blur(5px)', 'blur(0px)'], // Starting from blurred to unblurred
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i,
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0,-40],
+                opacity: [1,0],
+                filter: ['blur(0px)', 'blur(5px)'], // Ending from unblurred to blurred
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: (el, i) => 100 + 30 * i,
+                complete: function() {
+                    hidePreloader(); // Call hidePreloader after the animation completes
+                }
+            });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+                <a class="logo-image" href="/RicardoBlog/">
+                    <img src="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/RicardoBlog/">
+                
+                Ricardo&#39;s Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/tags"
+                                        >
+                                    <i class="fa-regular fa-tags fa-fw"></i>
+                                    TAGS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/categories"
+                                        >
+                                    <i class="fa-solid fa-folder fa-fw"></i>
+                                    CATEGORIES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/RicardoBlog/About">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/RicardoMiles">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/RicardoPotter">
+                                                    GITHUB2
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="https://ricardopotter.github.io/">
+                                                    BLOG
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/RicardoBlog/Links">
+                                                    FRIENDS
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-link fa-fw"></i>
+                                    LINKS
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://supgoon.com/">
+                                                    子昂的博客
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://google.com">
+                                                    GOOGLE
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://chatgpt.com/">
+                                                    CHATGPT
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/tags"
+                        >
+                            <span>
+                                TAGS
+                            </span>
+                            
+                                <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/categories"
+                        >
+                            <span>
+                                CATEGORIES
+                            </span>
+                            
+                                <i class="fa-solid fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/RicardoBlog/About">ME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/RicardoMiles">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/RicardoPotter">GITHUB2</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="https://ricardopotter.github.io/">BLOG</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/RicardoBlog/Links">FRIENDS</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-Links"
+                        >
+                            <span>
+                                LINKS
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-Links">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://supgoon.com/">子昂的博客</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://google.com">GOOGLE</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://chatgpt.com/">CHATGPT</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+                    
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/RicardoBlog/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">48</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/RicardoBlog/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/RicardoBlog/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">45</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Code with Mosh in CPP Part One</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/RicardoBlog/images/AcatarPic.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Ricardo Pu</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-01-06 15:45:03</span>
+        <span class="mobile">2025-01-06 15:45:03</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-01-06 16:21:36</span>
+            <span class="mobile">2025-01-06 16:21:36</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h1 id="What-is-CPP"><a href="#What-is-CPP" class="headerlink" title="What is CPP"></a>What is CPP</h1><p>Recommended IDE: Clion</p>
+<p>Cpp executable: Cpp 20</p>
+<p>A project have a unique main file ended with <code>.cpp</code> postfix.</p>
+<p>Case sensitive language - CPP</p>
+<p>Type of value the function gonna return, followed by function name; After the function name, there is a pair parenthesis, followed by a pair of braces</p>
+<p>Hash tag with angle bracket define the directive of our program;</p>
+<p>Iostream - input output stream</p>
+<p><code>std</code> is short for standard library</p>
+<p>This is like the bucket or container available for us</p>
+<p><code>cout</code> is short for character out, follow by two left angle bracket .</p>
+<p>End each line of statement with semicolon.</p>
+<p>Terminate it with a semicolon as it is a statement, A line is called a statement.</p>
+<h1 id="Run-Code-in-IDE"><a href="#Run-Code-in-IDE" class="headerlink" title="Run Code in IDE"></a>Run Code in IDE</h1><p>Run CPP code needs to compile it to machine code that can be run by the computer operating system.</p>
+<p>Machine code is the native language that a computer’s operating system understands.</p>
+<p>The bar(pane) under codes is called console window or terminal window.</p>
+<p><code>Command + B</code> to compile &amp; build codes.</p>
+<p><code>Command + R</code> to run codes.</p>
+<h1 id="Content-included-in-Mosh’s-Course"><a href="#Content-included-in-Mosh’s-Course" class="headerlink" title="Content included in Mosh’s Course"></a>Content included in Mosh’s Course</h1><h2 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h2><ul>
+<li>Fundametals of programming in C++<br>  * Variables and constants<br>  * Naming conventions<br>  * Mathematical expressions<br>  * Writing to and reading from the console<br>  * Working with the standard library<br>  * Comments</li>
+<li>Data types</li>
+<li>Loops</li>
+<li>Decision making statement</li>
+<li>Functions</li>
+</ul>
+<h2 id="Intermediate"><a href="#Intermediate" class="headerlink" title="Intermediate"></a>Intermediate</h2><ul>
+<li>Arrays</li>
+<li>Pointers</li>
+<li>Strings</li>
+<li>Structures</li>
+<li>Enumrations</li>
+<li>Streams</li>
+</ul>
+<h2 id="Advanced"><a href="#Advanced" class="headerlink" title="Advanced"></a>Advanced</h2><ul>
+<li>Classes</li>
+<li>Exception</li>
+<li>Templates</li>
+<li>Containers</li>
+</ul>
+<h1 id="Foundamentals-of-CPP"><a href="#Foundamentals-of-CPP" class="headerlink" title="Foundamentals of CPP"></a>Foundamentals of CPP</h1><h2 id="Variables-and-constants"><a href="#Variables-and-constants" class="headerlink" title="Variables and constants"></a>Variables and constants</h2><p>Variable - temporarily  store data in computer’s memory</p>
+<p>Also, it’s the name of location in memory where we can store some value.</p>
+<h3 id="Declare-a-variable-in-CPP"><a href="#Declare-a-variable-in-CPP" class="headerlink" title="Declare a variable in CPP"></a>Declare a variable in CPP</h3><p>Data type + Meaningful Name + Assignment Operator (optional) + Value (optional);</p>
+<p>Initializing variable is not mandatory, but good to follow;</p>
+<h3 id="Insights-behind-Swap-A-and-B"><a href="#Insights-behind-Swap-A-and-B" class="headerlink" title="Insights behind Swap A and B"></a>Insights behind Swap A and B</h3><p>Use another variable <code>temp</code> to hold the value of variable <code>A</code>, and give the value of variable <code>B</code> to <code>A</code>, give the value of <code>temp</code> to <code>B</code>.</p>
+<h3 id="Constants"><a href="#Constants" class="headerlink" title="Constants"></a>Constants</h3><p>Use constant to prevent some variable’s value from changing,</p>
+<p>We type the “const” keyword before declaring this variable.</p>
+<h2 id="Naming-convention"><a href="#Naming-convention" class="headerlink" title="Naming convention"></a>Naming convention</h2><p>Snake Case, low case word with lower slash<br>Pascal Case, Capitalized the variable name<br>Camel Case, first lower case and rest word capitalised</p>
+<h2 id="Mathematical-Expressions"><a href="#Mathematical-Expressions" class="headerlink" title="Mathematical Expressions"></a>Mathematical Expressions</h2><p>There is operator and operands in a expression, for example, in <code>A+B</code>, A and B is the operands</p>
+<ul>
+<li>Addition operator +</li>
+<li>Subtraction operator -</li>
+<li>Multiplication operator x</li>
+<li>Division operator &#x2F;</li>
+<li>Modulus operator % returns the remainder of a devision</li>
+</ul>
+<p>If both of operands are integers, it will not output a result of floating number tho,<br>At least, one of the operands is double type, so that the result could be floating number.</p>
+<h3 id="What-is-the-difference-between-x-xand-x-x-1"><a href="#What-is-the-difference-between-x-xand-x-x-1" class="headerlink" title="What is the difference between x++,++xand x=x+1"></a>What is the difference between <code>x++</code>,<code>++x</code>and <code>x=x+1</code></h3><p>Only decrement and increment have notations like <code>x++</code> and <code>x--</code><br>They can be applied as a postfix or as a prefix<br>E.g. <code>++x</code> <code>x++</code></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">10</span></span><br><span class="line"><span class="type">int</span> y = x++;</span><br></pre></td></tr></table></figure></div>
+<p>Postfix notation: first step the current value of x which is 10 will be assigned to variable y<br>And then X will be incremented by one<br>After this code block x will be 11, y will be 10</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">10</span></span><br><span class="line"><span class="type">int</span> z = ++x</span><br></pre></td></tr></table></figure></div>
+<p>Use increment operator as a prefix, first step variable x will be incremented by one, and then the value of x will be stored in z<br>So in that case both x and z will be 11</p>
+<p>In mathematics, the multiplication and division always have a higher order or priority than addition or subtraction operators</p>
+<p>We can always change order of these operators using parenthesis, wrap this in parenthesis</p>
+<p>In the fraction ¾, four is the denominator.</p>
+<p>Decimal part will gone if the declared variable to store it is integer.</p>
+<h2 id="Write-to-and-Read-from-the-Console"><a href="#Write-to-and-Read-from-the-Console" class="headerlink" title="Write to and Read from the Console"></a>Write to and Read from the Console</h2><p><code>&lt;&lt;</code> These double left angle brackets are called the stream insertion operator,</p>
+<p>The operator for inserting something to our output stream.</p>
+<p><code>std::endl</code> &#x3D;&#x3D; <code>\n</code> newline character to end a line.</p>
+<p><code>cin</code> along with the stream extraction operator,</p>
+<p>It’s the opposite of stream insertion operator,</p>
+<p>Stream extraction operator notation is double right angle brackets <code>&gt;&gt;</code></p>
+<h2 id="Working-with-the-standard-library"><a href="#Working-with-the-standard-library" class="headerlink" title="Working with the standard library"></a>Working with the standard library</h2><p>With statement <code>using namespace std;</code> declared before main function,</p>
+<p>We can simply access all objects in the STD namespace without double colons and <code>std</code> prefixed,</p>
+<p><code>std::cin</code> could be simplied to just <code>cin</code> in that way.</p>
+<h2 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h2><p>It’s more conventional to write a comment above a line</p>
+<p>We can also start a mutiple-line comment with a forwar slash and an asterisk</p>
+<h1 id="Fundamental-Data-Type"><a href="#Fundamental-Data-Type" class="headerlink" title="Fundamental Data Type"></a>Fundamental Data Type</h1><p>C++ is statically type language</p>
+<p>When declaring its type we need to specify its type and this type cannot be changed throughout the lifetime of our program</p>
+<p>CPP‘s built in types</p>
+<ul>
+<li>Short</li>
+<li>Int</li>
+<li>Long</li>
+<li>Long long</li>
+<li>Float</li>
+<li>Double</li>
+<li>Long double</li>
+<li>Bool</li>
+<li>Char</li>
+</ul>
+<p>If we don’t type <code>f</code> or <code>l</code> after float and long type variable‘s assignment value, compiler will treat them as double and int by default</p>
+<p>Key word <code>auto</code> leads our compiler to infer datatype.</p>
+<p>Brace initialization, it could defaultly initialize a variable to zero and prevent it shows the random value in garabage before firsst assignment. Garbage makes program unpredictable. Also, it could prevent you from wrong type assignment, </p>
+<p>Decimal part &#x3D; fractional part</p>
+<h1 id="Warning-on-Numerical-Variable-Processing"><a href="#Warning-on-Numerical-Variable-Processing" class="headerlink" title="Warning on Numerical Variable Processing"></a>Warning on Numerical Variable Processing</h1><ul>
+<li>Decimal base 10</li>
+<li>Binary base 2</li>
+<li>Hexadecimal base 16</li>
+</ul>
+<p>e.g. 0xFF &#x3D;  0b11111111 &#x3D; 255</p>
+<p>Keyword “unsigned” numerical type should be stayed away, we don’t need every feature c plus plus has</p>
+<p>Narrowing<br>Initializing a small type with a larger type<br>Compiler will narrow down our number<br>E.g. </p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> number =<span class="number">1000000</span>;</span><br><span class="line"><span class="type">short</span> another = number;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;another = &quot;</span> &lt;&lt; another &lt;&lt; endl</span><br></pre></td></tr></table></figure></div>
+
+<p>There is a warning before compilation, and after compilation, this is the result </p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">16960</span></span><br></pre></td></tr></table></figure></div>
+
+<p>It’s the result of narrowing conversion</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> number  = <span class="number">1000000</span>;</span><br><span class="line"><span class="type">short</span> another &#123;number&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<p>Brace initializer’s benefit in that case is compiler will prevent us from compiling it </p>
+<p>“&#x3D;” assignment operator</p>
+<h1 id="Generating-a-random-number"><a href="#Generating-a-random-number" class="headerlink" title="Generating a random number"></a>Generating a random number</h1><p>Use the <code>rand()</code> function in <code>ctdlib</code>, everytime we run our code we get an exact same number. Because the so-called random is not that true random, it technically relys on some mathematical formula</p>
+<h2 id="Getting-the-current-time-to-get-a-wilder-seed"><a href="#Getting-the-current-time-to-get-a-wilder-seed" class="headerlink" title="Getting the current time to get a wilder seed"></a>Getting the current time to get a wilder seed</h2><p>Time function calculate the elapsed seconds from 1th of Jan 1970</p>
+<h1 id="Variable-and-Argument"><a href="#Variable-and-Argument" class="headerlink" title="Variable and Argument"></a><code>Variable</code> and <code>Argument</code></h1><ul>
+<li>Variable: A variable is a storage location in memory that can hold a value. Variables are used to store data that can change during the execution of a program. They have a name (identifier), a data type, and a value. Variables can be manipulated and used in expressions and statements.</li>
+<li>Arguments: Input values that are passed to a function or a method. When a function is called, the values passed to it are called arguments. These arguments are used by the function to perform specific tasks.</li>
+</ul>
+<h1 id="Argument-and-Parameter"><a href="#Argument-and-Parameter" class="headerlink" title="Argument and Parameter"></a><code>Argument</code> and <code>Parameter</code></h1><ul>
+<li>Parameters are the variables defined in a function’s declaration that specify what input the function expects.</li>
+<li>Arguments are the actual values or expressions that you provide when you call the function, which correspond to the parameters.</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Code with Mosh in CPP Part One</li>
+        <li><strong>Author:</strong> Ricardo Pu</li>
+        <li><strong>Created at
+                :</strong> 2025-01-06 15:45:03</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-01-06 16:21:36
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://ricardopotter.github.io/RicardoBlog/2025/01/06/Code-with-Mosh-in-CPP-Part-One/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/RicardoBlog/2025/01/06/BackUpMD/United-Kingdom-History/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item"></span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-swup-reload-script
+            src="//cdn.staticfile.org/gitalk/1.8.0/gitalk.min.js"></script>
+    <script data-swup-reload-script>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: 'Ov23liGO2xyBBdllskJp',
+                    clientSecret: '4a88fea52acc1bb7ad9f8b5796eca97de4427af9',
+                    repo: 'RicardoBlog',
+                    owner: 'RicardoPotter',
+                    admin: ['RicardoPotter'],
+                    id: __gitalk__pathname,
+                    language: 'en',
+                    proxy: 'https://github.com/login/oauth/access_token'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Code with Mosh in CPP Part One</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-CPP"><span class="nav-text">What is CPP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Run-Code-in-IDE"><span class="nav-text">Run Code in IDE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Content-included-in-Mosh%E2%80%99s-Course"><span class="nav-text">Content included in Mosh’s Course</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic"><span class="nav-text">Basic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Intermediate"><span class="nav-text">Intermediate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Advanced"><span class="nav-text">Advanced</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Foundamentals-of-CPP"><span class="nav-text">Foundamentals of CPP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Variables-and-constants"><span class="nav-text">Variables and constants</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Declare-a-variable-in-CPP"><span class="nav-text">Declare a variable in CPP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Insights-behind-Swap-A-and-B"><span class="nav-text">Insights behind Swap A and B</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Constants"><span class="nav-text">Constants</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Naming-convention"><span class="nav-text">Naming convention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mathematical-Expressions"><span class="nav-text">Mathematical Expressions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-difference-between-x-xand-x-x-1"><span class="nav-text">What is the difference between x++,++xand x&#x3D;x+1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Write-to-and-Read-from-the-Console"><span class="nav-text">Write to and Read from the Console</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Working-with-the-standard-library"><span class="nav-text">Working with the standard library</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Comments"><span class="nav-text">Comments</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fundamental-Data-Type"><span class="nav-text">Fundamental Data Type</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Warning-on-Numerical-Variable-Processing"><span class="nav-text">Warning on Numerical Variable Processing</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Generating-a-random-number"><span class="nav-text">Generating a random number</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Getting-the-current-time-to-get-a-wilder-seed"><span class="nav-text">Getting the current time to get a wilder seed</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Variable-and-Argument"><span class="nav-text">Variable and Argument</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Argument-and-Parameter"><span class="nav-text">Argument and Parameter</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/RicardoBlog/">Ricardo Pu</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        45 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/RicardoBlog/js/libs/Swup.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/RicardoBlog/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/RicardoBlog/js/utils.js" type="module"></script>
+
+<script src="/RicardoBlog/js/main.js" type="module"></script>
+
+<script src="/RicardoBlog/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/RicardoBlog/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/RicardoBlog/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/RicardoBlog/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/RicardoBlog/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/RicardoBlog/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/RicardoBlog/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/RicardoBlog/js/tools/runtime.js"></script>
+
+    
+<script src="/RicardoBlog/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/RicardoBlog/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/RicardoBlog/js/libs/Typed.min.js"></script>
+
+  
+<script src="/RicardoBlog/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/RicardoBlog/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/RicardoBlog/js/layouts/toc.js" type="module"></script>
+
+<script src="/RicardoBlog/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>
