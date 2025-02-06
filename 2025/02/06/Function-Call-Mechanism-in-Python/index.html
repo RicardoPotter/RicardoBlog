@@ -26,7 +26,7 @@
 <meta property="og:description" content="Revision for Python functions calling mechanism. Python复习...">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-02-06T13:42:31.000Z">
-<meta property="article:modified_time" content="2025-02-06T13:49:29.849Z">
+<meta property="article:modified_time" content="2025-02-06T14:05:54.694Z">
 <meta property="article:author" content="Ricardo Pu">
 <meta property="article:tag" content="CS Learning">
 <meta property="article:tag" content="SLA">
@@ -723,8 +723,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-02-06 13:49:29</span>
-            <span class="mobile">2025-02-06 13:49:29</span>
+            <span class="desktop">2025-02-06 14:05:54</span>
+            <span class="mobile">2025-02-06 14:05:54</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -821,7 +821,7 @@
 </ul>
 <h3 id="Example"><a href="#Example" class="headerlink" title="Example:"></a><strong>Example:</strong></h3><h4 id="module-example-py"><a href="#module-example-py" class="headerlink" title="module_example.py"></a><code>module_example.py</code></h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">greet</span>():    </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Hello from module!&quot;</span>)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():    </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Running as the main script.&quot;</span>)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:    </span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></div>
 
-<h4 id="test-import-py"><a href="#test-import-py" class="headerlink" title="test_import.py"></a><code>test_import.py</code></h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> module_examplemodule_example.greet()</span><br></pre></td></tr></table></figure></div>
+<h4 id="test-import-py"><a href="#test-import-py" class="headerlink" title="test_import.py"></a><code>test_import.py</code></h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> module_example</span><br><span class="line">module_example.greet()</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="Outputs"><a href="#Outputs" class="headerlink" title="Outputs:"></a><strong>Outputs:</strong></h3><ul>
 <li><p>Running <code>module_example.py</code> directly:</p>
@@ -857,7 +857,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-02-06 13:49:29
+                    :</strong> 2025-02-06 14:05:54
             </li>
         
         <li>
