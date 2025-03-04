@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Ricardo Pu">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://ricardopotter.github.io/RicardoBlog/2025/02/23/probability-tree-tutorial/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="A probability tree is a diagram that helps visualize and calculate the outcomes of different business decisions by mapping out all possible events and their probabilities. 1. Introduction to Probabili">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Probability Tree Tutorial">
+<meta property="og:url" content="https://ricardopotter.github.io/RicardoBlog/2025/02/23/Probability-Tree-Tutorial/index.html">
+<meta property="og:site_name" content="Ricardo Pu&#39;s Blog">
+<meta property="og:description" content="A probability tree is a diagram that helps visualize and calculate the outcomes of different business decisions by mapping out all possible events and their probabilities. 1. Introduction to Probabili">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-02-23T02:08:31.000Z">
+<meta property="article:modified_time" content="2025-03-04T14:39:18.306Z">
+<meta property="article:author" content="Ricardo Pu">
+<meta property="article:tag" content="SLA">
+<meta property="article:tag" content="Business Analysis">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg">
+    <meta name="theme-color" content="#008080">
+    <link rel="shortcut icon" href="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Probability Tree Tutorial -
+        
+        Ricardo&#39;s Blog
+    </title>
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/RicardoBlog/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/RicardoBlog/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    
+        
+<script src="/RicardoBlog/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"ricardopotter.github.io","root":"/RicardoBlog/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":5,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#008080","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Ricardo's Blog","subtitle":{"text":["躲进小楼成一统","汉堡中的生菜","乌鸦的世界天鹅也有罪"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/RicardoMiles","instagram":"https://www.instagram.com/ricardomilesgarcia/","zhihu":null,"twitter":null,"email":"pujinjian@hotmail.com","steam":"https://steamcommunity.com/profiles/76561198400981711/","weibo":"https://weibo.com/u/3226308805"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-solid fa-folder"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/About","Github":"https://github.com/RicardoMiles","Github2":"https://github.com/RicardoPotter","Blog":"https://ricardopotter.github.io/","Friends":"/Links"}},"Links":{"icon":"fa-regular fa-link","submenus":{"子昂的博客":"https://supgoon.com/","Google":"https://google.com","ChatGPT":"https://chatgpt.com/"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":"躲进小楼成一统","show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"Links":{"path":"/links","icon":"fa-regular fa-link"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":10}},"footerStart":"2024/02/19 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Ricardo&#39;s Blog
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [40,0],
+                translateZ: 0,
+                opacity: [0,1],
+                filter: ['blur(5px)', 'blur(0px)'], // Starting from blurred to unblurred
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i,
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0,-40],
+                opacity: [1,0],
+                filter: ['blur(0px)', 'blur(5px)'], // Ending from unblurred to blurred
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: (el, i) => 100 + 30 * i,
+                complete: function() {
+                    hidePreloader(); // Call hidePreloader after the animation completes
+                }
+            });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+                <a class="logo-image" href="/RicardoBlog/">
+                    <img src="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/RicardoBlog/">
+                
+                Ricardo&#39;s Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/tags"
+                                        >
+                                    <i class="fa-regular fa-tags fa-fw"></i>
+                                    TAGS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/categories"
+                                        >
+                                    <i class="fa-solid fa-folder fa-fw"></i>
+                                    CATEGORIES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/RicardoBlog/About">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/RicardoMiles">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/RicardoPotter">
+                                                    GITHUB2
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="https://ricardopotter.github.io/">
+                                                    BLOG
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/RicardoBlog/Links">
+                                                    FRIENDS
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-link fa-fw"></i>
+                                    LINKS
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://supgoon.com/">
+                                                    子昂的博客
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://google.com">
+                                                    GOOGLE
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://chatgpt.com/">
+                                                    CHATGPT
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/tags"
+                        >
+                            <span>
+                                TAGS
+                            </span>
+                            
+                                <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/categories"
+                        >
+                            <span>
+                                CATEGORIES
+                            </span>
+                            
+                                <i class="fa-solid fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/RicardoBlog/About">ME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/RicardoMiles">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/RicardoPotter">GITHUB2</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="https://ricardopotter.github.io/">BLOG</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/RicardoBlog/Links">FRIENDS</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-Links"
+                        >
+                            <span>
+                                LINKS
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-Links">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://supgoon.com/">子昂的博客</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://google.com">GOOGLE</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://chatgpt.com/">CHATGPT</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+                    
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/RicardoBlog/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">46</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/RicardoBlog/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/RicardoBlog/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">40</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Probability Tree Tutorial</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/RicardoBlog/images/AcatarPic.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Ricardo Pu</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-02-23 02:08:31</span>
+        <span class="mobile">2025-02-23 02:08:31</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-03-04 14:39:18</span>
+            <span class="mobile">2025-03-04 14:39:18</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/RicardoBlog/categories/Interview-Revision/">Interview Revision</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/RicardoBlog/tags/SLA/">SLA</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/RicardoBlog/tags/Business-Analysis/">Business Analysis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <p>A probability tree is a diagram that helps visualize and calculate the outcomes of different business decisions by mapping out all possible events and their probabilities.</p>
+<h2 id="1-Introduction-to-Probability-Trees-in-Business-Case-Studies"><a href="#1-Introduction-to-Probability-Trees-in-Business-Case-Studies" class="headerlink" title="1. Introduction to Probability Trees in Business Case Studies"></a>1. Introduction to Probability Trees in Business Case Studies</h2><h3 id="English"><a href="#English" class="headerlink" title="English:"></a><strong>English:</strong></h3><p>A probability tree is a diagram that helps you visualize and calculate the outcomes of different business decisions by mapping out all possible events and their probabilities.</p>
+<h3 id="中文："><a href="#中文：" class="headerlink" title="中文："></a><strong>中文：</strong></h3><p>概率树是一种图表，它帮助你通过绘制所有可能事件及其概率来直观地计算和理解不同商业决策的结果。</p>
+<hr>
+<h2 id="2-Basic-Terminology"><a href="#2-Basic-Terminology" class="headerlink" title="2. Basic Terminology"></a>2. Basic Terminology</h2><h3 id="English-1"><a href="#English-1" class="headerlink" title="English:"></a><strong>English:</strong></h3><ul>
+<li><strong>Probability:</strong> The likelihood that a particular event will occur.</li>
+<li><strong>Decision Node:</strong> A point where a decision must be made in the tree.</li>
+<li><strong>Chance Node:</strong> A point where the outcome is determined by chance rather than by choice.</li>
+<li><strong>Branch:</strong> A line that represents a possible decision or outcome.</li>
+</ul>
+<h2 id="中文：-1"><a href="#中文：-1" class="headerlink" title="中文："></a><strong>中文：</strong></h2><ul>
+<li><strong>概率 (Probability):</strong> 某一事件发生的可能性。</li>
+<li><strong>决策节点 (Decision Node):</strong> 树状图中需要做出决策的节点。</li>
+<li><strong>随机节点 (Chance Node):</strong> 结果由随机因素决定而非人为选择的节点。</li>
+<li><strong>分支 (Branch):</strong> 表示可能的决策或结果的路径。</li>
+</ul>
+<hr>
+<h2 id="3-How-a-Probability-Tree-Works"><a href="#3-How-a-Probability-Tree-Works" class="headerlink" title="3. How a Probability Tree Works"></a>3. How a Probability Tree Works</h2><h3 id="English-2"><a href="#English-2" class="headerlink" title="English:"></a><strong>English:</strong></h3><ul>
+<li>Start with a single starting point.</li>
+<li>Draw branches for each possible decision or outcome.</li>
+<li>For each branch, if more events can occur, continue drawing sub-branches with their probabilities.</li>
+<li>Multiply the probabilities along a branch to find the overall likelihood of that specific outcome</li>
+</ul>
+<h2 id="中文：-2"><a href="#中文：-2" class="headerlink" title="中文："></a><strong>中文：</strong></h2><ul>
+<li>从一个起点开始。</li>
+<li>为每个可能的决策或结果画出分支。</li>
+<li>对于每个分支，如果后续还有事件发生，继续绘制带有相应概率的子分支。</li>
+<li>沿着一条分支的概率相乘，就可以得到该特定结果的总体可能性。</li>
+</ul>
+<hr>
+<h2 id="4-Step-by-Step-Tutorial"><a href="#4-Step-by-Step-Tutorial" class="headerlink" title="4. Step-by-Step Tutorial"></a>4. Step-by-Step Tutorial</h2><h3 id="English-3"><a href="#English-3" class="headerlink" title="English:"></a><strong>English:</strong></h3><p><strong>Step 1:</strong> Identify the business decision or event you want to analyse.<br><strong>Step 2:</strong> List all possible outcomes and decisions.<br><strong>Step 3:</strong> Draw your probability tree starting from the initial decision, adding branches for each outcome and their probabilities.<br><strong>Step 4:</strong> Multiply the probabilities along each branch to determine the overall likelihood of each outcome.<br><strong>Step 5:</strong> Analyze the results to decide the best course of action.</p>
+<h3 id="中文：-3"><a href="#中文：-3" class="headerlink" title="中文："></a><strong>中文：</strong></h3><p><strong>步骤1：</strong> 确定你想分析的商业决策或事件。<br><strong>步骤2：</strong> 列出所有可能的结果和决策。<br><strong>步骤3：</strong> 从初始决策开始绘制你的概率树，为每个结果添加带有相应概率的分支。<br><strong>步骤4：</strong> 沿着每个分支将概率相乘，确定每个结果的总体可能性。<br><strong>步骤5：</strong> 分析结果，决定最佳行动方案。</p>
+<hr>
+<h2 id="5-Vivid-Example"><a href="#5-Vivid-Example" class="headerlink" title="5. Vivid Example"></a>5. Vivid Example</h2><h4 id="Scenario-Imagine-a-company-considering-the-launch-of-a-new-product"><a href="#Scenario-Imagine-a-company-considering-the-launch-of-a-new-product" class="headerlink" title="Scenario: Imagine a company considering the launch of a new product."></a><strong>Scenario:</strong> Imagine a company considering the launch of a new product.</h4><ul>
+<li>There is a 70% chance that the market will react positively and a 30% chance it will not.</li>
+<li>If the market reacts positively, there is a 60% chance the product will achieve high profits and a 40% chance of moderate profits.</li>
+<li>If the market reacts negatively, there is an 80% chance of incurring a loss and a 20% chance of breaking even.</li>
+</ul>
+<h4 id="How-to-Build-the-Tree"><a href="#How-to-Build-the-Tree" class="headerlink" title="How to Build the Tree:"></a><strong>How to Build the Tree:</strong></h4><ul>
+<li>Start with the decision to launch the product.</li>
+<li>Draw two branches: one for a positive market reaction (70%) and one for a negative reaction (30%).</li>
+<li>For the positive reaction branch, draw two sub-branches: “High Profit” (60%) and “Moderate Profit” (40%).</li>
+<li>For the negative reaction branch, draw two sub-branches: “Loss” (80%) and “Break Even” (20%).</li>
+<li>Multiply along the branches to find the overall probabilities. For example, the probability of a high profit is 70% * 60% &#x3D; 42%.</li>
+</ul>
+<h3 id="中文：-4"><a href="#中文：-4" class="headerlink" title="中文："></a><strong>中文：</strong></h3><h4 id="情景：假设一家公司正在考虑推出一款新产品。"><a href="#情景：假设一家公司正在考虑推出一款新产品。" class="headerlink" title="情景：假设一家公司正在考虑推出一款新产品。"></a>情景：假设一家公司正在考虑推出一款新产品。</h4><ul>
+<li>市场反应积极的可能性为70%，反映消极的可能性为30%</li>
+<li>如果市场反应积极，则有60%的机会产品会获得高利润，40%的机会获得中等利润</li>
+<li>如果市场反应消极，则有80%的机会会亏损，20%的机会会收支平衡</li>
+</ul>
+<h4 id="如何构建概率树："><a href="#如何构建概率树：" class="headerlink" title="如何构建概率树："></a><strong>如何构建概率树：</strong></h4><ul>
+<li>从推出产品这一决策开始。</li>
+<li>画出两条分支：一条表示市场反应积极（70%），一条表示市场反应消极（30%）。</li>
+<li>对于积极反应的分支，再画出两条子分支：“高利润”（60%）和“中等利润”（40%）。</li>
+<li>对于消极反应的分支，再画出两条子分支：“亏损”（80%）和“收支平衡”（20%）。</li>
+<li>沿着每条分支相乘，得出总体概率。例如，高利润的概率为70% * 60% &#x3D; 42%。</li>
+</ul>
+<hr>
+<h3 id="6-Application-in-Business-Case-Studies"><a href="#6-Application-in-Business-Case-Studies" class="headerlink" title="6. Application in Business Case Studies"></a>6. Application in Business Case Studies</h3><hr>
+<h3 id="Case-1-Market-Entry-Decision"><a href="#Case-1-Market-Entry-Decision" class="headerlink" title="Case 1: Market Entry Decision"></a>Case 1: Market Entry Decision</h3><p><strong>Question:</strong><br>Your client is considering entering a new market. They are uncertain about how the market will react. Using a probability tree, evaluate three scenarios: high market acceptance, moderate acceptance, and low acceptance. How would you structure your analysis and what recommendation would you give?</p>
+<p><strong>Sample Answer:</strong></p>
+<ul>
+<li>Step 1: Define the Decision<ul>
+<li>The main decision is to enter the market.</li>
+</ul>
+</li>
+<li>Step 2: Identify Possible Outcomes<ul>
+<li><strong>High Acceptance:</strong> Assume a probability of 40% with a projected profit of $10 million.</li>
+<li><strong>Moderate Acceptance:</strong> Assume a probability of 40% with a projected profit of $5 million.</li>
+<li><strong>Low Acceptance:</strong> Assume a probability of 20% with a projected loss of $2 million.</li>
+</ul>
+</li>
+<li>Step 3: Build the Probability Tree<ul>
+<li>Start with a decision node (enter market).</li>
+<li>Create three branches: one for each scenario (high, moderate, low).</li>
+<li>Label each branch with its probability and outcome.</li>
+</ul>
+</li>
+<li>Step 4: Calculate the Expected Value<ul>
+<li>Multiply the probability by the corresponding outcome for each branch:<ul>
+<li>High: 0.4 × $10M &#x3D; $4M</li>
+<li>Moderate: 0.4 × $5M &#x3D; $2M</li>
+<li>Low: 0.2 × (-$2M) &#x3D; -$0.4M</li>
+</ul>
+</li>
+<li>Sum the results: $4M + $2M – $0.4M &#x3D; $5.6M</li>
+</ul>
+</li>
+<li>Step 5: Recommend a Course of Action<ul>
+<li>Since the overall expected profit is positive ($5.6M) and meets the client’s risk criteria, recommend proceeding with market entry while suggesting risk mitigation strategies for the low acceptance scenario.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>Question：</strong><br>你的客户正在考虑进入一个新市场，但对市场反应存在不确定性。请利用概率树评估三个情景：高市场接受度、中等接受度和低市场接受度。你如何构建分析框架，并提出你的建议？</p>
+<p><strong>样本答案 (中文)：</strong></p>
+<ul>
+<li>步骤1：定义决策<ul>
+<li>主要决策是进入该市场。</li>
+</ul>
+</li>
+<li>步骤2：确定可能的结果<ul>
+<li><strong>高接受度：</strong> 假设概率为40%，预计利润为1000万美元。</li>
+<li><strong>中等接受度：</strong> 假设概率为40%，预计利润为500万美元。</li>
+<li><strong>低接受度：</strong> 假设概率为20%，预计亏损200万美元。</li>
+</ul>
+</li>
+<li>步骤3：构建概率树<ul>
+<li>从决策节点（进入市场）开始。</li>
+<li>绘制三条分支，分别代表高、中、低三种情景。</li>
+<li>为每个分支标注对应的概率和结果。</li>
+</ul>
+</li>
+<li>步骤4：计算期望值<ul>
+<li>对每个分支，计算概率乘以对应结果：<ul>
+<li>高接受度：0.4 × 1000万美元 &#x3D; 400万美元</li>
+<li>中等接受度：0.4 × 500万美元 &#x3D; 200万美元</li>
+<li>低接受度：0.2 × (-200万美元) &#x3D; -40万美元</li>
+</ul>
+</li>
+<li>将结果相加：400万美元 + 200万美元 – 40万美元 &#x3D; 560万美元</li>
+</ul>
+</li>
+<li>步骤5：提出建议<ul>
+<li>由于总体期望利润为正（560万美元），并且符合客户的风险要求，建议进入市场，同时建议为低接受度情景制定风险缓解策略。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Case-2-New-Product-Launch-Decision"><a href="#Case-2-New-Product-Launch-Decision" class="headerlink" title="Case 2: New Product Launch Decision"></a>Case 2: New Product Launch Decision</h3><p><strong>Question :</strong><br>Your client plans to launch a new product, but the consumer response is uncertain. Use a probability tree to evaluate three possible scenarios: strong consumer response, moderate response, and weak response. How would you analyse the potential revenue outcomes and what would be your recommendation?</p>
+<p><strong>Sample Answer :</strong></p>
+<ul>
+<li>Step 1: Define the Decision<ul>
+<li>The main decision is to launch the new product.</li>
+</ul>
+</li>
+<li>Step 2: Identify Possible Outcomes<ul>
+<li><strong>Strong Response:</strong> Probability 50%, with projected revenue of $15 million.</li>
+<li><strong>Moderate Response:</strong> Probability 30%, with projected revenue of $8 million.</li>
+<li><strong>Weak Response:</strong> Probability 20%, with projected revenue of $3 million.</li>
+</ul>
+</li>
+<li>Step 3: Build the Probability Tree<ul>
+<li>Start with a decision node (launch product).</li>
+<li>Create branches for each response scenario and label them with the given probabilities and outcomes.</li>
+</ul>
+</li>
+<li>Step 4: Calculate the Expected Revenue<ul>
+<li>Strong: 0.5 × $15M &#x3D; $7.5M</li>
+<li>Moderate: 0.3 × $8M &#x3D; $2.4M</li>
+<li>Weak: 0.2 × $3M &#x3D; $0.6M</li>
+<li>Total Expected Revenue &#x3D; $7.5M + $2.4M + $0.6M &#x3D; $10.5M</li>
+</ul>
+</li>
+<li>Step 5: Recommendation<ul>
+<li>If the expected revenue of $10.5M meets the client’s financial targets and the risk level is acceptable, recommend proceeding with the product launch. Additionally, suggest contingency plans for the weak response scenario.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>Question ：</strong><br>你的客户计划推出一款新产品，但消费者的反应存在不确定性。请利用概率树评估三种可能情景：强烈的消费者反应、中等反应和疲弱反应。你如何分析可能的收入结果，并提出你的建议？</p>
+<p><strong>样本答案：</strong></p>
+<ul>
+<li>步骤1：定义决策<ul>
+<li>主要决策是推出新产品。</li>
+</ul>
+</li>
+<li>步骤2：确定可能的结果<ul>
+<li><strong>强烈反应：</strong> 概率为50%，预计收入为1500万美元。</li>
+<li><strong>中等反应：</strong> 概率为30%，预计收入为800万美元。</li>
+<li><strong>疲弱反应：</strong> 概率为20%，预计收入为300万美元。</li>
+</ul>
+</li>
+<li>步骤3：构建概率树<ul>
+<li>从决策节点（推出产品）开始。</li>
+<li>为每个消费者反应情景绘制分支，并标注对应的概率和结果。</li>
+</ul>
+</li>
+<li>步骤4：计算预期收入<ul>
+<li>强烈反应：0.5 × 1500万美元 &#x3D; 750万美元</li>
+<li>中等反应：0.3 × 800万美元 &#x3D; 240万美元</li>
+<li>疲弱反应：0.2 × 300万美元 &#x3D; 60万美元</li>
+<li>总预期收入 &#x3D; 750万美元 + 240万美元 + 60万美元 &#x3D; 1050万美元</li>
+</ul>
+</li>
+<li>步骤5：提出建议<ul>
+<li>如果预期收入1050万美元符合客户的财务目标且风险可控，则建议推出产品，并同时建议为疲弱反应情景制定应急计划。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Case-3-Investment-Decision-Analysis"><a href="#Case-3-Investment-Decision-Analysis" class="headerlink" title="Case 3: Investment Decision Analysis"></a>Case 3: Investment Decision Analysis</h3><p><strong>Question :</strong><br>A company is considering an investment in a new technology that might be highly successful, moderately successful, or fail. Construct a probability tree to assess the expected return on investment (ROI) based on these scenarios. What analysis would you perform and what recommendation would you give?</p>
+<p><strong>Sample Answer :</strong></p>
+<ul>
+<li>Step 1: Define the Decision<ul>
+<li>The decision is to invest in the new technology.</li>
+</ul>
+</li>
+<li>Step 2: Identify Possible Outcomes<ul>
+<li><strong>High Success:</strong> Probability 30%, ROI of 25%.</li>
+<li><strong>Moderate Success:</strong> Probability 50%, ROI of 10%.</li>
+<li><strong>Failure:</strong> Probability 20%, ROI of -5%.</li>
+</ul>
+</li>
+<li>Step 3: Build the Probability Tree<ul>
+<li>Start with a decision node (investment decision).</li>
+<li>Branch out to three outcomes, each with its probability and associated ROI.</li>
+</ul>
+</li>
+<li>Step 4: Calculate the Expected ROI<ul>
+<li>High Success: 0.3 × 25% &#x3D; 7.5%</li>
+<li>Moderate Success: 0.5 × 10% &#x3D; 5%</li>
+<li>Failure: 0.2 × (-5%) &#x3D; -1%</li>
+<li>Total Expected ROI &#x3D; 7.5% + 5% – 1% &#x3D; 11.5%</li>
+</ul>
+</li>
+<li>Step 5: Recommendation<ul>
+<li>If the overall expected ROI of 11.5% exceeds the company’s required return and the risk profile is acceptable, recommend proceeding with the investment while outlining risk management measures for the failure scenario.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>Question ：</strong><br>一家公司正在考虑对一项新技术进行投资，该技术可能取得巨大成功、中等成功或失败。请构建一个概率树来评估基于这些情景的投资回报率（ROI）的预期值。你将如何进行分析，并提出什么建议？</p>
+<p><strong>样本答案：</strong></p>
+<ul>
+<li>步骤1：定义决策<ul>
+<li>决策是是否投资这项新技术。</li>
+</ul>
+</li>
+<li>步骤2：确定可能的结果<ul>
+<li><strong>巨大成功：</strong> 概率为30%，投资回报率为25%。</li>
+<li><strong>中等成功：</strong> 概率为50%，投资回报率为10%。</li>
+<li><strong>失败：</strong> 概率为20%，投资回报率为-5%。</li>
+</ul>
+</li>
+<li>步骤3：构建概率树<ul>
+<li>从决策节点（投资决策）开始。</li>
+<li>分出三条分支，每条分支标明对应的概率和投资回报率。</li>
+</ul>
+</li>
+<li>步骤4：计算预期ROI<ul>
+<li>巨大成功：0.3 × 25% &#x3D; 7.5%</li>
+<li>中等成功：0.5 × 10% &#x3D; 5%</li>
+<li>失败：0.2 × (-5%) &#x3D; -1%</li>
+<li>总预期ROI &#x3D; 7.5% + 5% – 1% &#x3D; 11.5%</li>
+</ul>
+</li>
+<li>步骤5：提出建议<ul>
+<li>如果11.5%的预期ROI高于公司要求的回报率，且风险在可接受范围内，则建议进行投资，同时制定针对失败情景的风险管理措施。</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Probability Tree Tutorial</li>
+        <li><strong>Author:</strong> Ricardo Pu</li>
+        <li><strong>Created at
+                :</strong> 2025-02-23 02:08:31</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-03-04 14:39:18
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://ricardopotter.github.io/RicardoBlog/2025/02/23/Probability-Tree-Tutorial/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/SLA/">#SLA</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/Business-Analysis/">#Business Analysis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/RicardoBlog/2025/02/27/Learn-from-CodeSignal/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Learn from CodeSignal</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/RicardoBlog/2025/02/22/Carl-s-suggestions/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Carl&#39;s Suggestion on LeetCode Practice</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-swup-reload-script
+            src="//cdn.staticfile.org/gitalk/1.8.0/gitalk.min.js"></script>
+    <script data-swup-reload-script>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: 'Ov23liGO2xyBBdllskJp',
+                    clientSecret: '4a88fea52acc1bb7ad9f8b5796eca97de4427af9',
+                    repo: 'RicardoBlog',
+                    owner: 'RicardoPotter',
+                    admin: ['RicardoPotter'],
+                    id: __gitalk__pathname,
+                    language: 'en',
+                    proxy: 'https://github.com/login/oauth/access_token'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Probability Tree Tutorial</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Introduction-to-Probability-Trees-in-Business-Case-Studies"><span class="nav-text">1. Introduction to Probability Trees in Business Case Studies</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#English"><span class="nav-text">English:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%EF%BC%9A"><span class="nav-text">中文：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Basic-Terminology"><span class="nav-text">2. Basic Terminology</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#English-1"><span class="nav-text">English:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%EF%BC%9A-1"><span class="nav-text">中文：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-How-a-Probability-Tree-Works"><span class="nav-text">3. How a Probability Tree Works</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#English-2"><span class="nav-text">English:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%EF%BC%9A-2"><span class="nav-text">中文：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Step-by-Step-Tutorial"><span class="nav-text">4. Step-by-Step Tutorial</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#English-3"><span class="nav-text">English:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%EF%BC%9A-3"><span class="nav-text">中文：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Vivid-Example"><span class="nav-text">5. Vivid Example</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Scenario-Imagine-a-company-considering-the-launch-of-a-new-product"><span class="nav-text">Scenario: Imagine a company considering the launch of a new product.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#How-to-Build-the-Tree"><span class="nav-text">How to Build the Tree:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%EF%BC%9A-4"><span class="nav-text">中文：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%83%85%E6%99%AF%EF%BC%9A%E5%81%87%E8%AE%BE%E4%B8%80%E5%AE%B6%E5%85%AC%E5%8F%B8%E6%AD%A3%E5%9C%A8%E8%80%83%E8%99%91%E6%8E%A8%E5%87%BA%E4%B8%80%E6%AC%BE%E6%96%B0%E4%BA%A7%E5%93%81%E3%80%82"><span class="nav-text">情景：假设一家公司正在考虑推出一款新产品。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E6%A6%82%E7%8E%87%E6%A0%91%EF%BC%9A"><span class="nav-text">如何构建概率树：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Application-in-Business-Case-Studies"><span class="nav-text">6. Application in Business Case Studies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Case-1-Market-Entry-Decision"><span class="nav-text">Case 1: Market Entry Decision</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Case-2-New-Product-Launch-Decision"><span class="nav-text">Case 2: New Product Launch Decision</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Case-3-Investment-Decision-Analysis"><span class="nav-text">Case 3: Investment Decision Analysis</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/RicardoBlog/">Ricardo Pu</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        40 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/RicardoBlog/js/libs/Swup.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/RicardoBlog/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/RicardoBlog/js/utils.js" type="module"></script>
+
+<script src="/RicardoBlog/js/main.js" type="module"></script>
+
+<script src="/RicardoBlog/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/RicardoBlog/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/RicardoBlog/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/RicardoBlog/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/RicardoBlog/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/RicardoBlog/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/RicardoBlog/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/RicardoBlog/js/tools/runtime.js"></script>
+
+    
+<script src="/RicardoBlog/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/RicardoBlog/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/RicardoBlog/js/libs/Typed.min.js"></script>
+
+  
+<script src="/RicardoBlog/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/RicardoBlog/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/RicardoBlog/js/layouts/toc.js" type="module"></script>
+
+<script src="/RicardoBlog/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>
