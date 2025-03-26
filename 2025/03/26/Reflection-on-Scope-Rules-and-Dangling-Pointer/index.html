@@ -13,24 +13,29 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://ricardopotter.github.io/RicardoBlog/2025/02/07/solving-the-windows-ctrl-z-eof-issue-in-python/"/>
+    <link rel="canonical" href="https://ricardopotter.github.io/RicardoBlog/2025/03/26/reflection-on-scope-rules-and-dangling-pointer/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Debugging Log 1">
+        <meta name="description" content="Reflection on pointer reassignment bug. Related with Scope Rules in C++, Dangling Pointer concept and &#96;sizeof()&#96;&#x2F;&#96;size()&#96; function.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Solving the Windows Ctrl+Z EOF Issue in Python">
-<meta property="og:url" content="https://ricardopotter.github.io/RicardoBlog/2025/02/07/Solving-the-Windows-Ctrl-Z-EOF-Issue-in-Python/index.html">
+<meta property="og:title" content="Reflection on Scope Rules and Dangling Pointer">
+<meta property="og:url" content="https://ricardopotter.github.io/RicardoBlog/2025/03/26/Reflection-on-Scope-Rules-and-Dangling-Pointer/index.html">
 <meta property="og:site_name" content="Ricardo Pu&#39;s Blog">
-<meta property="og:description" content="Debugging Log 1">
+<meta property="og:description" content="Reflection on pointer reassignment bug. Related with Scope Rules in C++, Dangling Pointer concept and &#96;sizeof()&#96;&#x2F;&#96;size()&#96; function.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-02-07T15:17:42.000Z">
-<meta property="article:modified_time" content="2025-02-17T12:14:34.243Z">
+<meta property="article:published_time" content="2025-03-26T17:15:31.000Z">
+<meta property="article:modified_time" content="2025-03-26T18:42:50.716Z">
 <meta property="article:author" content="Ricardo Pu">
 <meta property="article:tag" content="CS Learning">
+<meta property="article:tag" content="CPP">
+<meta property="article:tag" content="Vocabulary">
+<meta property="article:tag" content="English Learning">
 <meta property="article:tag" content="SLA">
-<meta property="article:tag" content="Python">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="Data-Struct">
+<meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
     
     
@@ -43,7 +48,7 @@
     
     <title>
         
-            Solving the Windows Ctrl+Z EOF Issue in Python -
+            Reflection on Scope Rules and Dangling Pointer -
         
         Ricardo&#39;s Blog
     </title>
@@ -695,7 +700,7 @@
         <div class="article-title relative w-full">
             
                 <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Solving the Windows Ctrl+Z EOF Issue in Python</h1>
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Reflection on Scope Rules and Dangling Pointer</h1>
                 </div>
             
             </div>
@@ -716,15 +721,15 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-02-07 15:17:42</span>
-        <span class="mobile">2025-02-07 15:17:42</span>
+        <span class="desktop">2025-03-26 17:15:31</span>
+        <span class="mobile">2025-03-26 17:15:31</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-02-17 12:14:34</span>
-            <span class="mobile">2025-02-17 12:14:34</span>
+            <span class="desktop">2025-03-26 18:42:50</span>
+            <span class="mobile">2025-03-26 18:42:50</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -756,11 +761,31 @@
                     </li>
                 
                     <li>
+                        | <a href="/RicardoBlog/tags/CPP/">CPP</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/RicardoBlog/tags/Vocabulary/">Vocabulary</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/RicardoBlog/tags/English-Learning/">English Learning</a>&nbsp;
+                    </li>
+                
+                    <li>
                         | <a href="/RicardoBlog/tags/SLA/">SLA</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/RicardoBlog/tags/Python/">Python</a>&nbsp;
+                        | <a href="/RicardoBlog/tags/LeetCode/">LeetCode</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/RicardoBlog/tags/Data-Struct/">Data-Struct</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/RicardoBlog/tags/Algorithm/">Algorithm</a>&nbsp;
                     </li>
                 
             </ul>
@@ -786,67 +811,78 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <p>When working with Python’s standard input (<code>stdin</code>), handling multi-line user input seems straightforward—until I run into unexpected behavior on Windows. Recently, I encountered an intriguing problem where ending input with <code>Ctrl+Z + Enter</code> required <em>double</em> confirmation to properly trigger an EOF (End-of-File) condition. This post details the debugging journey, mistakes made, lessons learned, and the final solution.</p>
-<hr>
-<h2 id="🚩-The-Problem-Unexpected-Ctrl-Z-Behavior-on-Windows"><a href="#🚩-The-Problem-Unexpected-Ctrl-Z-Behavior-on-Windows" class="headerlink" title="🚩 The Problem: Unexpected Ctrl+Z Behavior on Windows"></a>🚩 The Problem: Unexpected <code>Ctrl+Z</code> Behavior on Windows</h2><p>While developing a Python script to process multi-line input from the command line, the goal was simple:</p>
-<ol>
-<li><p>Accept multi-line user input.</p>
-</li>
-<li><p>Terminate input with <code>Ctrl+Z + Enter</code> (on Windows) or <code>Ctrl+D</code> (on Linux&#x2F;macOS).</p>
-</li>
-<li><p>Process the input seamlessly without requiring extra key presses.</p>
-</li>
-</ol>
-<p>However, when running the script on Windows, <strong>pressing</strong> <code>Ctrl+Z + Enter</code> <strong>once wasn’t enough</strong>. My program waited for <em>another</em> EOF or Enter key press to exit the input mode. Even worse, sometimes it captured strange characters like <code>␖</code> (EOF symbol) in the output.</p>
-<hr>
-<h2 id="🌀-Initial-Attempts-and-Why-They-Failed"><a href="#🌀-Initial-Attempts-and-Why-They-Failed" class="headerlink" title="🌀 Initial Attempts and Why They Failed"></a>🌀 Initial Attempts and Why They Failed</h2><h3 id="1-Using-sys-stdin-read"><a href="#1-Using-sys-stdin-read" class="headerlink" title="1. Using sys.stdin.read()"></a>1. <strong>Using</strong> <code>sys.stdin.read()</code></h3><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">input_text = sys.stdin.read()</span><br></pre></td></tr></table></figure></div>
+            <p>Reflection on pointer reassignment bug. Related with Scope Rules in C++, Dangling Pointer concept and <code>sizeof()</code> &#x2F; <code>size()</code> function.</p>
+<h2 id="The-Root-Error"><a href="#The-Root-Error" class="headerlink" title="The Root Error"></a>The Root Error</h2><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Creating integer array </span></span><br><span class="line">    <span class="type">int</span>* numbers = <span class="keyword">new</span> <span class="type">int</span>[<span class="number">5</span>];</span><br><span class="line">    <span class="type">int</span> arraySize = <span class="number">5</span>; <span class="comment">// Keep track of the current size of the array</span></span><br><span class="line">    <span class="type">int</span> entries = <span class="number">0</span>;   <span class="comment">// Use a variable to track the entry point</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Constantly ask users to enter a number</span></span><br><span class="line">    <span class="comment">// Store it to our array</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Number: &quot;</span>;</span><br><span class="line">        cin &gt;&gt; numbers[entries];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Check whether it is a valid number or not</span></span><br><span class="line">        <span class="keyword">if</span> (cin.<span class="built_in">fail</span>()) &#123;</span><br><span class="line">            cin.<span class="built_in">clear</span>(); <span class="comment">// Clear the error state</span></span><br><span class="line">            cin.<span class="built_in">ignore</span>(numeric_limits&lt;streamsize&gt;::<span class="built_in">max</span>(), <span class="string">&#x27;\n&#x27;</span>); <span class="comment">// Ignore the invalid input</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Otherwise, we&#x27;re going to increase entries by 1</span></span><br><span class="line">        entries++;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Resize the array when it is full</span></span><br><span class="line">        <span class="keyword">if</span> (entries == arraySize) &#123;</span><br><span class="line">            <span class="comment">// Create a temp array (twice the size)</span></span><br><span class="line">            <span class="comment">// Copy all the elements</span></span><br><span class="line">            <span class="comment">// Have &quot;numbers&quot; pointer point to the new array</span></span><br><span class="line">            <span class="type">int</span> extendedSize = <span class="number">2</span> * arraySize;</span><br><span class="line">            <span class="type">int</span>* temp = <span class="keyword">new</span> <span class="type">int</span>[<span class="number">10</span>];</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; arraySize; i++) &#123;</span><br><span class="line">                temp[i] = numbers[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">delete</span>[] numbers;</span><br><span class="line">            numbers = temp; <span class="comment">// Update the pointer to the new array</span></span><br><span class="line">            arraySize = extendedSize; <span class="comment">// Update the array size</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Loop to print user-entered numbers so far</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; entries; i++) &#123;</span><br><span class="line">        cout &lt;&lt; numbers[i] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Free the allocated memory</span></span><br><span class="line">    <span class="keyword">delete</span>[] numbers;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<p><strong>Mistake:</strong> This approach works flawlessly on Linux&#x2F;macOS because <code>Ctrl+D</code> immediately triggers EOF. On Windows, however, <code>**Ctrl+Z**</code> <strong>acts as an EOF marker but requires an additional</strong> <code>**Enter**</code> <strong>to be processed.</strong></p>
-<p><strong>Result:</strong> Multiple <code>Ctrl+Z + Enter</code> presses were needed to properly terminate input.</p>
-<hr>
-<h3 id="2-Switching-to-a-while-Loop-with-input"><a href="#2-Switching-to-a-while-Loop-with-input" class="headerlink" title="2. Switching to a **while** Loop with **input()**"></a>2. <strong>Switching to a</strong> <code>**while**</code> <strong>Loop with</strong> <code>**input()**</code></h3><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lines = []</span><br><span class="line"><span class="keyword">try</span>:    </span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:        </span><br><span class="line">        line = <span class="built_in">input</span>()        </span><br><span class="line">        lines.append(line)</span><br><span class="line"><span class="keyword">except</span> EOFError:    </span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure></div>
+<p>When I compiled the code and make it run, bugs emerges like below:</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">PureCppExercise % ./ResizeArray                      </span><br><span class="line">Number: 1</span><br><span class="line">Number: 2</span><br><span class="line">Number: 3</span><br><span class="line">Number: 4</span><br><span class="line">Number: 5</span><br><span class="line">The arraySize = 2</span><br><span class="line">Number: 6</span><br><span class="line">Number: 7</span><br><span class="line">Number: _</span><br><span class="line">-392708096</span><br><span class="line">46369</span><br><span class="line">0</span><br><span class="line">0</span><br><span class="line">0</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">ResizeArray(98894,0x1e6263840) malloc: *** error for object 0x6000029cc000: pointer being freed was not allocated</span><br><span class="line">ResizeArray(98894,0x1e6263840) malloc: *** set a breakpoint in malloc_error_break to debug</span><br><span class="line">zsh: abort      ./ResizeArray</span><br></pre></td></tr></table></figure></div>
 
-<p><strong>Mistake:</strong> The assumption here was that <code>Ctrl+Z</code> would immediately raise an <code>EOFError</code> to break the loop. In reality, <strong>Windows buffers input until an extra newline is provided after</strong> <code>**Ctrl+Z**</code>, causing the same double-confirmation issue.</p>
-<p><strong>Result:</strong> Again, double <code>Ctrl+Z + Enter</code> was needed.</p>
-<hr>
-<h3 id="3-Attempting-to-Clean-Up-EOF-Characters"><a href="#3-Attempting-to-Clean-Up-EOF-Characters" class="headerlink" title="3. Attempting to Clean Up EOF Characters"></a>3. <strong>Attempting to Clean Up EOF Characters</strong></h3><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">input_text = sys.stdin.read().replace(<span class="string">&quot;\x1A&quot;</span>, <span class="string">&quot;&quot;</span>).strip()</span><br></pre></td></tr></table></figure></div>
-
-<p><strong>Mistake:</strong> While this removed unwanted EOF characters from the output, <strong>it didn’t address the core issue</strong> of why Python wasn’t terminating input properly after the first <code>Ctrl+Z</code>.</p>
-<p><strong>Result:</strong> Cosmetic fix—problem remained.</p>
-<hr>
-<h2 id="✨-The-Breakthrough-Using-msvcrt-for-Real-Time-Input-Handling"><a href="#✨-The-Breakthrough-Using-msvcrt-for-Real-Time-Input-Handling" class="headerlink" title="✨ The Breakthrough: Using msvcrt for Real-Time Input Handling"></a>✨ The Breakthrough: Using <code>msvcrt</code> for Real-Time Input Handling</h2><p>After understanding that the core issue was tied to <strong>Windows’ low-level handling of</strong> <code>Ctrl+Z</code>, the solution became clear:</p>
-<h3 id="The-Key-Insight"><a href="#The-Key-Insight" class="headerlink" title="The Key Insight:"></a><strong>The Key Insight:</strong></h3><ul>
-<li><p><code>sys.stdin</code> <strong>is too high-level and buffered.</strong></p>
-</li>
-<li><p><strong>We need to capture raw keyboard events directly.</strong></p>
-</li>
-</ul>
-<p>This led to the discovery of the <code>msvcrt</code> module, which allows real-time detection of keypress events.</p>
-<h3 id="✅-The-Final-Working-Solution"><a href="#✅-The-Final-Working-Solution" class="headerlink" title="✅ The Final Working Solution:"></a>✅ <strong>The Final Working Solution:</strong></h3><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment"># Import msvcrt for Windows-specific input handling</span></span><br><span class="line"><span class="keyword">import</span> msvcrt</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">format_string</span>(<span class="params">input_str</span>):</span><br><span class="line">    <span class="comment"># Clean unwanted control characters</span></span><br><span class="line">    input_str = input_str.replace(<span class="string">&quot;\x07&quot;</span>, <span class="string">&quot;&quot;</span>).replace(<span class="string">&quot;\x1A&quot;</span>, <span class="string">&quot;&quot;</span>).strip()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Ensure space after &#x27;=&#x27; if missing</span></span><br><span class="line">    input_str = re.sub(<span class="string">r&#x27;=(\S)&#x27;</span>, <span class="string">r&#x27;= \1&#x27;</span>, input_str.strip())</span><br><span class="line"></span><br><span class="line">    lines = input_str.split(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line">    formatted_lines = []</span><br><span class="line">    last_eq_index = -<span class="number">1</span>  <span class="comment"># Track last &#x27;=&#x27; position</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i, line <span class="keyword">in</span> <span class="built_in">enumerate</span>(lines):</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;=&#x27;</span> <span class="keyword">in</span> line:</span><br><span class="line">            eq_pos = line.index(<span class="string">&#x27;=&#x27;</span>)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Highlight text before &#x27;=&#x27; up to the closest previous newline</span></span><br><span class="line">            <span class="keyword">if</span> last_eq_index == -<span class="number">1</span>:</span><br><span class="line">                before_eq = line[:eq_pos].strip()</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                before_eq = <span class="string">&quot; &quot;</span>.join(lines[last_eq_index + <span class="number">1</span>:i]).strip() + <span class="string">&quot; &quot;</span> + line[:eq_pos].strip()</span><br><span class="line"></span><br><span class="line">            after_eq = line[eq_pos + <span class="number">1</span>:].strip()</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Apply bold formatting</span></span><br><span class="line">            formatted_line = <span class="string">f&quot;**<span class="subst">&#123;before_eq.strip()&#125;</span>** = <span class="subst">&#123;after_eq&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line">            last_eq_index = i  <span class="comment"># Update last &#x27;=&#x27; position</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            formatted_line = line</span><br><span class="line"></span><br><span class="line">        formatted_lines.append(formatted_line)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;\n&quot;</span>.join(formatted_lines)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read_input_windows</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Enter your text (Press Ctrl+Z then Enter to finish):&quot;</span>)</span><br><span class="line">    lines = []</span><br><span class="line">    current_line = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        char = msvcrt.getwche()  <span class="comment"># Read character without waiting for newline</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> char == <span class="string">&#x27;\x1A&#x27;</span>:  <span class="comment"># Ctrl+Z detected (EOF)</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">elif</span> char == <span class="string">&#x27;\r&#x27;</span>:  <span class="comment"># Enter key pressed</span></span><br><span class="line">            lines.append(current_line)</span><br><span class="line">            current_line = <span class="string">&quot;&quot;</span></span><br><span class="line">            <span class="built_in">print</span>()  <span class="comment"># Move to the next line</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            current_line += char</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Append any remaining text</span></span><br><span class="line">    <span class="keyword">if</span> current_line:</span><br><span class="line">        lines.append(current_line)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;\n&quot;</span>.join(lines)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(sys.argv) &gt; <span class="number">1</span>:</span><br><span class="line">        input_text = <span class="string">&quot; &quot;</span>.join(sys.argv[<span class="number">1</span>:])  <span class="comment"># Read from command-line arguments</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># ✅ Use msvcrt for proper EOF detection on Windows</span></span><br><span class="line">        input_text = read_input_windows().strip()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> input_text:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;\nNo input received. Exiting.&quot;</span>)</span><br><span class="line">        sys.exit(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    output_text = format_string(input_text)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\nFormatted Output:\n&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(output_text)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Save formatted output for easy copy-paste</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;formatted_output.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">        file.write(output_text)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\nFormatted text saved as &#x27;formatted_output.txt&#x27;. You can open and copy it from there.&quot;</span>)</span><br></pre></td></tr></table></figure></div>
-
-<p><strong>Why This Works:</strong></p>
+<p>There are at 3 issues</p>
 <ul>
-<li><p><code>msvcrt.getwche()</code> <strong>reads characters in real-time</strong>, without waiting for a newline.</p>
-</li>
-<li><p>It <strong>immediately detects</strong> <code>Ctrl+Z</code> <strong>(ASCII 26)</strong> as an EOF signal.</p>
-</li>
-<li><p>No more extra key presses or buffering issues.</p>
+<li>The bug info from malloc operation <code>*** error for object 0x6000029cc000: pointer being freed was not allocated</code></li>
+<li>The <code>arraySize</code> calculation is improper.</li>
+<li>Junction values showed in output</li>
+</ul>
+<p>Related concept and mechanism questions I had</p>
+<ul>
+<li>Scope Rules in C++ from compiler’s POV</li>
+<li>Dangling Pointer</li>
+<li>The difference between destroying a pointer and destroying the memory block a pointer points to.</li>
+<li>The calculation method variation on Fixed Array and Dynamic Array<ul>
+<li>Why <code>sizeof(arrayVariableName)/sizeof(arrayVariableName[0])</code> works for fixed-size arrays but not for dynamic arrays</li>
+<li>Why the size information of dynamic arrays is lost at runtime</li>
+<li>Why <code>sizeof()</code> behaves differently for fixed-size arrays and dynamic arrays</li>
+</ul>
 </li>
 </ul>
-<hr>
-<h2 id="🚀-Lessons-Learned"><a href="#🚀-Lessons-Learned" class="headerlink" title="🚀 Lessons Learned"></a>🚀 Lessons Learned</h2><ol>
-<li><p><strong>Platform Differences Matter:</strong> Windows and Unix-like systems handle EOF differently. <code>Ctrl+Z</code> <strong>!&#x3D;</strong> <code>Ctrl+D</code> <strong>in behavior.</strong></p>
+<h2 id="The-Scope-Rules-in-C"><a href="#The-Scope-Rules-in-C" class="headerlink" title="The Scope Rules in C++"></a>The Scope Rules in C++</h2><p>At first, I thought the reason malloc error occurred was that the memory block didn’t exist when it was outside the if conditions.</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// Creating integer array </span></span><br><span class="line">    <span class="type">int</span>* numbers = <span class="keyword">new</span> <span class="type">int</span>[<span class="number">5</span>];</span><br><span class="line">    <span class="comment">// Use a variable to track the entry point</span></span><br><span class="line">    <span class="comment">// Initialising it to zero</span></span><br><span class="line">    <span class="type">int</span> entries = <span class="number">0</span>;</span><br><span class="line">    <span class="type">bool</span> resized = <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Constantly ask users to enter a number</span></span><br><span class="line">    <span class="comment">// Store it to our array</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Number: &quot;</span>;</span><br><span class="line">        cin &gt;&gt; numbers[entries];</span><br><span class="line">        <span class="comment">// check whether it is a valid number or not</span></span><br><span class="line">        <span class="comment">// if cin.fail() returns True means</span></span><br><span class="line">        <span class="comment">// users enter something can&#x27;t be converted to a number</span></span><br><span class="line">        <span class="comment">// we&#x27;re gonna break out of this loop</span></span><br><span class="line">        <span class="keyword">if</span>(cin.<span class="built_in">fail</span>())&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// otherwise we&#x27;re going to increase entries by 1</span></span><br><span class="line">        entries++;</span><br><span class="line">        <span class="comment">// Resize the array when it is full</span></span><br><span class="line">        <span class="keyword">if</span>(entries == <span class="number">5</span>)&#123;</span><br><span class="line">            <span class="comment">// Create a temp array (twice the size)</span></span><br><span class="line">            <span class="comment">// Copy all the elements</span></span><br><span class="line">            <span class="comment">// Have &quot;numbers&quot; pointer point to the new array</span></span><br><span class="line">            <span class="type">int</span> arraySize = <span class="built_in">sizeof</span>(numbers)/<span class="built_in">sizeof</span>(numbers[<span class="number">0</span>]);</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;The arraySize = &quot;</span> &lt;&lt; arraySize &lt;&lt; endl;</span><br><span class="line">            <span class="type">int</span> extendedSize = <span class="number">2</span> * arraySize;</span><br><span class="line">            <span class="type">int</span>* temp = <span class="keyword">new</span> <span class="type">int</span>[<span class="number">10</span>];</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; arraySize; i++)&#123;</span><br><span class="line">                temp[i] = numbers[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">delete</span>[] numbers;</span><br><span class="line">            <span class="type">int</span>* numbers = &amp;(temp[<span class="number">0</span>]);</span><br><span class="line">            resized = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// loop to print user-entered numbers so far</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; entries; i++)&#123;</span><br><span class="line">        cout &lt;&lt; numbers[i] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(resized)&#123;</span><br><span class="line">        <span class="keyword">delete</span>[] numbers;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>So I track the resizing operation to check.</p>
+<p>But indeed, I found that issue was caused by redefination of pointer variable <code>numbers</code>. It led to a change in its scope. I had established a “inner version” <code>numbers</code> inside the <code>if</code> block, so it was destroyed when it went outside of scope. For example, after the running of <code>if</code> block, there is still an outer variable called <code>numbers</code>. The deallocation error is due to <code>delete</code> operator couldn’t free a memory block that never be allocated (The memory block that original outer pointer pointed to had been freed inside the <code>if</code> block).</p>
+<p>Since the lifetime of a pointer variable depends on its scope, I should just avoid redefining the <code>numbers</code> pointer. When I <code>delete[] numbers</code>, only the original memory block <code>numbers</code> pointed to was being freed, <code>numbers</code> itself was still alive. I should use its feature that being local variable of <code>main()</code> function, which means it is the so-called “global variable” to <code>if</code> block.</p>
+<p>So, fix <code>int* numbers = &amp;(temp[0])</code> to <code>numbers = temp[0]</code>  or <code>numbers = temp</code></p>
+<h3 id="Scope-Rules-in-C"><a href="#Scope-Rules-in-C" class="headerlink" title="Scope Rules in C++"></a>Scope Rules in C++</h3><p>In C++, scopes are nested. When we define a variable with the same name in a nested scope, this inner variable <strong>shadows</strong> the outer variable. This means that within the nested scope, any reference to the variable name will refer to the inner variable, not the outer one.</p>
+<h3 id="Compiler’s-Actions"><a href="#Compiler’s-Actions" class="headerlink" title="Compiler’s Actions"></a>Compiler’s Actions</h3><ol>
+<li><strong>Variable Definition</strong>:<ul>
+<li>The compiler records each variable’s definition location and scope.</li>
+<li>When entering the <code>if</code> block, it records a new definition for <code>numbers</code> with a scope limited to the <code>if</code> block.</li>
+</ul>
 </li>
-<li><p><strong>High-Level APIs Aren’t Always Enough:</strong> <code>sys.stdin</code> works for basic tasks, but low-level modules like <code>msvcrt</code> are crucial for fine-grained control.</p>
+<li><strong>Variable Reference</strong>:<ul>
+<li>Within the <code>if</code> block, any reference to <code>numbers</code> is resolved to the inner scope’s variable.</li>
+<li>Outside the <code>if</code> block, references to <code>numbers</code> resolve to the outer scope’s variable.</li>
+</ul>
 </li>
-<li><p><strong>Debug the Root Cause, Not the Symptoms:</strong> Removing strange characters (␖) was treating the symptom, not solving the underlying problem.</p>
-</li>
-<li><p><strong>Don’t Underestimate the Console’s Role:</strong> The way terminals buffer input affects how programs receive data. Understanding the environment is as important as understanding the code.</p>
+<li><strong>Scope End</strong>:<ul>
+<li>When the <code>if</code> block ends, the inner scope’s <code>numbers</code> is destroyed, but the outer scope’s <code>numbers</code> remains.</li>
+</ul>
 </li>
 </ol>
-<hr>
-<h2 id="🌟-Final-Thoughts"><a href="#🌟-Final-Thoughts" class="headerlink" title="🌟 Final Thoughts"></a>🌟 Final Thoughts</h2><p>This debugging journey was a reminder that seemingly simple tasks can unravel hidden complexities—especially when dealing with cross-platform behavior. The key takeaway? <strong>Sometimes the right solution requires diving deeper, beyond the abstractions provided by high-level APIs.</strong></p>
-<p>Hopefully, this post helps others avoid the same pitfalls when handling standard input on Windows.</p>
+<h2 id="Size-Calculation-Variation"><a href="#Size-Calculation-Variation" class="headerlink" title="Size Calculation Variation"></a>Size Calculation Variation</h2><p>I got 2 from the calculation of  a 5-size dynamic array, which is very weird.</p>
+<h3 id="Why-sizeof-works-for-fixed-size-arrays-but-not-for-dynamic-arrays"><a href="#Why-sizeof-works-for-fixed-size-arrays-but-not-for-dynamic-arrays" class="headerlink" title="Why sizeof() works for fixed-size arrays but not for dynamic arrays"></a>Why <code>sizeof()</code> works for fixed-size arrays but not for dynamic arrays</h3><p>For fixed-size arrays (e.g., <code>int numbers[5];</code>), <code>sizeof(arrayVariableName)</code> gives the total size of the array in bytes, and <code>sizeof(arrayVariableName[0])</code> gives the size of one element in the array. By dividing the total size by the size of one element, we get the number of elements in the array. This works because the size of fixed-size arrays is determined at compile time, and the compiler knows the total size of the array.</p>
+<p>For dynamic arrays (e.g., <code>int* numbers = new int[5];</code>), <code>numbers</code> is a pointer, and <code>sizeof(numbers)</code> returns the size of the pointer itself (usually 4 or 8 bytes), not the size of the array it points to. Therefore, <code>sizeof(numbers)/sizeof(numbers[0])</code> does not correctly calculate the size of the array.</p>
+<h3 id="Why-the-size-information-of-dynamic-arrays-is-lost-at-runtime"><a href="#Why-the-size-information-of-dynamic-arrays-is-lost-at-runtime" class="headerlink" title="Why the size information of dynamic arrays is lost at runtime"></a>Why the size information of dynamic arrays is lost at runtime</h3><p>The size information of dynamic arrays is lost at runtime because dynamic arrays are managed through pointers. When you allocate a dynamic array using <code>new</code>, you get a pointer to the first element of the array. This pointer does not store any information about the size of the array. Therefore, once the array is allocated, its size information is no longer tracked unless you manually save this information. <strong>It’s due to the feature of <code>new</code> operator that returns only the first element’s address!</strong></p>
+<h3 id="Why-sizeof-behaves-differently-for-fixed-size-arrays-and-dynamic-arrays"><a href="#Why-sizeof-behaves-differently-for-fixed-size-arrays-and-dynamic-arrays" class="headerlink" title="Why sizeof() behaves differently for fixed-size arrays and dynamic arrays"></a>Why <code>sizeof()</code> behaves differently for fixed-size arrays and dynamic arrays</h3><p><strong>My question:</strong> I thought both fixed-size arrays and dynamic arrays are indeed treated as pointers, but why <code>sizeof()</code> function returns different value when they are same size?</p>
+<p>From the compiler’s perspective, both fixed-size arrays and dynamic arrays are indeed treated as pointers in many contexts, but their behavior and semantics differ. <strong>For fixed-size arrays</strong>, the array name typically decays to a pointer to the first element of the array in most contexts, but in the <code>sizeof</code> operation, the array name does not decay to a pointer. Instead, it represents the entire array. Therefore, <code>sizeof(arrayVariableName)</code> gives the size of the entire array.</p>
+<p><strong>For dynamic arrays</strong>, <code>numbers</code> is a pointer, and <code>sizeof(numbers)</code> returns the size of the pointer itself, not the size of the array it points to. This is because the size information of dynamic arrays is lost at runtime, and the compiler cannot know the actual size of the array that the pointer points to.</p>
+<h2 id="Pointer-and-Memory-Block-It-Refers-to"><a href="#Pointer-and-Memory-Block-It-Refers-to" class="headerlink" title="Pointer and Memory Block It Refers to"></a>Pointer and Memory Block It Refers to</h2><p>Deleting the memory block a pointer refers to (using <code>delete</code> or <code>delete[]</code>) does <strong>not</strong> destroy the pointer variable itself. The pointer still exists, but the memory it points to has been deallocated. Accessing this memory after it’s been freed results in <strong>undefined behaviour</strong>.</p>
+<p><strong>Lifetime of the pointer variable:</strong></p>
+<p>​	•	The lifetime of a pointer variable depends on its scope.</p>
+<p>​	•	If it is a <strong>local variable</strong>, it will be destroyed when it goes out of scope.</p>
+<p>​	•	If it is a <strong>global variable</strong> or a <strong>member variable</strong> of a class, its lifetime is determined by the lifetime of its enclosing context.</p>
+<h2 id="Why-Garbage-Values"><a href="#Why-Garbage-Values" class="headerlink" title="Why Garbage Values"></a>Why Garbage Values</h2><p>Although I avoid using the <code>arraySize</code> by substituting it with 10, the <code>for</code> loop still uses arraySize as edging case.</p>
+<p>I had already use the correct way to track the size of dynamic array, but I didn’t realized it. The <code>entries</code> is the actual size, dude!!!</p>
+<p>The final fix</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// Creating integer array </span></span><br><span class="line">    <span class="type">int</span>* numbers = <span class="keyword">new</span> <span class="type">int</span>[<span class="number">5</span>];</span><br><span class="line">    <span class="comment">// Use a variable to track the entry point</span></span><br><span class="line">    <span class="comment">// Initialising it to zero</span></span><br><span class="line">    <span class="type">int</span> entries = <span class="number">0</span>;</span><br><span class="line">    <span class="type">bool</span> resized = <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Constantly ask users to enter a number</span></span><br><span class="line">    <span class="comment">// Store it to our array</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Number: &quot;</span>;</span><br><span class="line">        cin &gt;&gt; numbers[entries];</span><br><span class="line">        <span class="comment">// check whether it is a valid number or not</span></span><br><span class="line">        <span class="comment">// if cin.fail() returns True means</span></span><br><span class="line">        <span class="comment">// users enter something can&#x27;t be converted to a number</span></span><br><span class="line">        <span class="comment">// we&#x27;re gonna break out of this loop</span></span><br><span class="line">        <span class="keyword">if</span>(cin.<span class="built_in">fail</span>())&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// otherwise we&#x27;re going to increase entries by 1</span></span><br><span class="line">        entries++;</span><br><span class="line">        <span class="comment">// Resize the array when it is full</span></span><br><span class="line">        <span class="keyword">if</span>(entries == <span class="number">5</span>)&#123;</span><br><span class="line">            <span class="comment">// Create a temp array (twice the size)</span></span><br><span class="line">            <span class="comment">// Copy all the elements</span></span><br><span class="line">            <span class="comment">// Have &quot;numbers&quot; pointer point to the new array</span></span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;The arraySize = &quot;</span> &lt;&lt; entries &lt;&lt; endl;</span><br><span class="line">            <span class="type">int</span> extendedSize = <span class="number">2</span> * entries;</span><br><span class="line">            <span class="type">int</span>* temp = <span class="keyword">new</span> <span class="type">int</span>[extendedSize];</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; entries; i++)&#123;</span><br><span class="line">                temp[i] = numbers[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">delete</span>[] numbers;</span><br><span class="line">            <span class="comment">// int* numbers = &amp;(temp[0]);</span></span><br><span class="line">            <span class="comment">// Wrong code is above</span></span><br><span class="line">            numbers = temp;</span><br><span class="line">            resized = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// loop to print user-entered numbers so far</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; entries; i++)&#123;</span><br><span class="line">        cout &lt;&lt; numbers[i] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">delete</span>[] numbers;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Dangling-Pointer"><a href="#Dangling-Pointer" class="headerlink" title="Dangling Pointer"></a>Dangling Pointer</h3><p>A dangling pointer refers to a pointer that continues to reference a memory location that has already been deallocated or no longer valid.</p>
+<ol>
+<li><strong>Memory Deallocation</strong>: When the memory that a pointer points to is freed using <code>delete</code> (in C++) or <code>free</code> (in C), the pointer still holds the address of the freed memory. <strong>MY SITUATION</strong></li>
+<li><strong>Local Variable Out of Scope</strong>: When a pointer points to a local variable, and the scope of that local variable ends, the pointer becomes dangling.</li>
+<li><strong>Returning Address of Local Variable</strong>: When a function returns the address of a local variable, the local variable is destroyed when the function ends, making the returned pointer invalid</li>
+</ol>
+<p>The dangling pointer in my program led to deallocation crash.</p>
 
         </div>
 
@@ -854,18 +890,18 @@
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> Solving the Windows Ctrl+Z EOF Issue in Python</li>
+        <li><strong>Title:</strong> Reflection on Scope Rules and Dangling Pointer</li>
         <li><strong>Author:</strong> Ricardo Pu</li>
         <li><strong>Created at
-                :</strong> 2025-02-07 15:17:42</li>
+                :</strong> 2025-03-26 17:15:31</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-02-17 12:14:34
+                    :</strong> 2025-03-26 18:42:50
             </li>
         
         <li>
-            <strong>Link:</strong> https://ricardopotter.github.io/RicardoBlog/2025/02/07/Solving-the-Windows-Ctrl-Z-EOF-Issue-in-Python/
+            <strong>Link:</strong> https://ricardopotter.github.io/RicardoBlog/2025/03/26/Reflection-on-Scope-Rules-and-Dangling-Pointer/
         </li>
         <li>
             <strong>
@@ -891,11 +927,31 @@
                     </li>
                 
                     <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/CPP/">#CPP</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/Vocabulary/">#Vocabulary</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/English-Learning/">#English Learning</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
                         <a href="/RicardoBlog/tags/SLA/">#SLA</a>&nbsp;
                     </li>
                 
                     <li class="tag-item mx-0.5">
-                        <a href="/RicardoBlog/tags/Python/">#Python</a>&nbsp;
+                        <a href="/RicardoBlog/tags/LeetCode/">#LeetCode</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/Data-Struct/">#Data-Struct</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/Algorithm/">#Algorithm</a>&nbsp;
                     </li>
                 
             </ul>
@@ -906,29 +962,14 @@
         
             <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
                 
-                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="prev"
-                        rel="prev"
-                        href="/RicardoBlog/2025/02/13/Python-Distribution-Packaging/"
-                        >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">Python Distribution Packaging</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="next"
                         rel="next"
-                        href="/RicardoBlog/2025/02/06/Function-Call-Mechanism-in-Python/"
+                        href="/RicardoBlog/2025/03/10/Reflection-on-My-Implementation-of-Bubble-Sort/"
                         >
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">Function Call Mechanism in Python</span>
+                                <span class="post-nav-title-item">Reflection on My Implementation of Bubble Sort</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
@@ -1007,8 +1048,8 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">Solving the Windows Ctrl+Z EOF Issue in Python</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9A%A9-The-Problem-Unexpected-Ctrl-Z-Behavior-on-Windows"><span class="nav-text">🚩 The Problem: Unexpected Ctrl+Z Behavior on Windows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8C%80-Initial-Attempts-and-Why-They-Failed"><span class="nav-text">🌀 Initial Attempts and Why They Failed</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Using-sys-stdin-read"><span class="nav-text">1. Using sys.stdin.read()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Switching-to-a-while-Loop-with-input"><span class="nav-text">2. Switching to a **while** Loop with **input()**</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Attempting-to-Clean-Up-EOF-Characters"><span class="nav-text">3. Attempting to Clean Up EOF Characters</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%A8-The-Breakthrough-Using-msvcrt-for-Real-Time-Input-Handling"><span class="nav-text">✨ The Breakthrough: Using msvcrt for Real-Time Input Handling</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Key-Insight"><span class="nav-text">The Key Insight:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%85-The-Final-Working-Solution"><span class="nav-text">✅ The Final Working Solution:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9A%80-Lessons-Learned"><span class="nav-text">🚀 Lessons Learned</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8C%9F-Final-Thoughts"><span class="nav-text">🌟 Final Thoughts</span></a></li></ol>
+        <div class="page-title">Reflection on Scope Rules and Dangling Pointer</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Root-Error"><span class="nav-text">The Root Error</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Scope-Rules-in-C"><span class="nav-text">The Scope Rules in C++</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scope-Rules-in-C"><span class="nav-text">Scope Rules in C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Compiler%E2%80%99s-Actions"><span class="nav-text">Compiler’s Actions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Size-Calculation-Variation"><span class="nav-text">Size Calculation Variation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-sizeof-works-for-fixed-size-arrays-but-not-for-dynamic-arrays"><span class="nav-text">Why sizeof() works for fixed-size arrays but not for dynamic arrays</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-the-size-information-of-dynamic-arrays-is-lost-at-runtime"><span class="nav-text">Why the size information of dynamic arrays is lost at runtime</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-sizeof-behaves-differently-for-fixed-size-arrays-and-dynamic-arrays"><span class="nav-text">Why sizeof() behaves differently for fixed-size arrays and dynamic arrays</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pointer-and-Memory-Block-It-Refers-to"><span class="nav-text">Pointer and Memory Block It Refers to</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-Garbage-Values"><span class="nav-text">Why Garbage Values</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dangling-Pointer"><span class="nav-text">Dangling Pointer</span></a></li></ol></li></ol>
 
     </div>
 </div>
