@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Ricardo Pu">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://ricardopotter.github.io/RicardoBlog/2025/04/11/reflection-on-cpp-parameter-passing/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Deeper learning and key-point retold driven by Mosh&#39;s course code snippet.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reflection on C++ Parameter Passing">
+<meta property="og:url" content="https://ricardopotter.github.io/RicardoBlog/2025/04/11/Reflection-on-CPP-Parameter-Passing/index.html">
+<meta property="og:site_name" content="Ricardo Pu&#39;s Blog">
+<meta property="og:description" content="Deeper learning and key-point retold driven by Mosh&#39;s course code snippet.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-04-11T09:40:32.000Z">
+<meta property="article:modified_time" content="2025-04-11T11:20:13.105Z">
+<meta property="article:author" content="Ricardo Pu">
+<meta property="article:tag" content="CS Learning">
+<meta property="article:tag" content="CPP">
+<meta property="article:tag" content="Vocabulary">
+<meta property="article:tag" content="English Learning">
+<meta property="article:tag" content="SLA">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg">
+    <meta name="theme-color" content="#008080">
+    <link rel="shortcut icon" href="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Reflection on C++ Parameter Passing -
+        
+        Ricardo&#39;s Blog
+    </title>
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/RicardoBlog/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/RicardoBlog/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    
+        
+<script src="/RicardoBlog/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"ricardopotter.github.io","root":"/RicardoBlog/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":5,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#008080","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Ricardo's Blog","subtitle":{"text":["躲进小楼成一统","汉堡中的生菜","乌鸦的世界天鹅也有罪"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/RicardoMiles","instagram":"https://www.instagram.com/ricardomilesgarcia/","zhihu":null,"twitter":null,"email":"pujinjian@hotmail.com","steam":"https://steamcommunity.com/profiles/76561198400981711/","weibo":"https://weibo.com/u/3226308805"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-solid fa-folder"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/About","Github":"https://github.com/RicardoMiles","Github2":"https://github.com/RicardoPotter","Blog":"https://ricardopotter.github.io/","Friends":"/Links"}},"Links":{"icon":"fa-regular fa-link","submenus":{"子昂的博客":"https://supgoon.com/","Google":"https://google.com","ChatGPT":"https://chatgpt.com/"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":"躲进小楼成一统","show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"Links":{"path":"/links","icon":"fa-regular fa-link"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":10}},"footerStart":"2024/02/19 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Ricardo&#39;s Blog
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [40,0],
+                translateZ: 0,
+                opacity: [0,1],
+                filter: ['blur(5px)', 'blur(0px)'], // Starting from blurred to unblurred
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i,
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0,-40],
+                opacity: [1,0],
+                filter: ['blur(0px)', 'blur(5px)'], // Ending from unblurred to blurred
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: (el, i) => 100 + 30 * i,
+                complete: function() {
+                    hidePreloader(); // Call hidePreloader after the animation completes
+                }
+            });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+                <a class="logo-image" href="/RicardoBlog/">
+                    <img src="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/RicardoBlog/">
+                
+                Ricardo&#39;s Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/tags"
+                                        >
+                                    <i class="fa-regular fa-tags fa-fw"></i>
+                                    TAGS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/categories"
+                                        >
+                                    <i class="fa-solid fa-folder fa-fw"></i>
+                                    CATEGORIES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/RicardoBlog/About">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/RicardoMiles">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/RicardoPotter">
+                                                    GITHUB2
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="https://ricardopotter.github.io/">
+                                                    BLOG
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/RicardoBlog/Links">
+                                                    FRIENDS
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-link fa-fw"></i>
+                                    LINKS
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://supgoon.com/">
+                                                    子昂的博客
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://google.com">
+                                                    GOOGLE
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://chatgpt.com/">
+                                                    CHATGPT
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/tags"
+                        >
+                            <span>
+                                TAGS
+                            </span>
+                            
+                                <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/categories"
+                        >
+                            <span>
+                                CATEGORIES
+                            </span>
+                            
+                                <i class="fa-solid fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/RicardoBlog/About">ME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/RicardoMiles">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/RicardoPotter">GITHUB2</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="https://ricardopotter.github.io/">BLOG</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/RicardoBlog/Links">FRIENDS</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-Links"
+                        >
+                            <span>
+                                LINKS
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-Links">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://supgoon.com/">子昂的博客</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://google.com">GOOGLE</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://chatgpt.com/">CHATGPT</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+                    
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/RicardoBlog/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">41</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/RicardoBlog/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/RicardoBlog/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">40</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Reflection on C++ Parameter Passing</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/RicardoBlog/images/AcatarPic.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Ricardo Pu</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-04-11 10:40:32</span>
+        <span class="mobile">2025-04-11 10:40:32</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-04-11 12:20:13</span>
+            <span class="mobile">2025-04-11 12:20:13</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/RicardoBlog/categories/Coding/">Coding</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/RicardoBlog/tags/CS-Learning/">CS Learning</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/RicardoBlog/tags/CPP/">CPP</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/RicardoBlog/tags/Vocabulary/">Vocabulary</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/RicardoBlog/tags/English-Learning/">English Learning</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/RicardoBlog/tags/SLA/">SLA</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Rectangle::<span class="built_in">Rectangle</span>(<span class="type">const</span> Rectangle&amp; source)&#123;    </span><br><span class="line">    <span class="keyword">this</span>-&gt;width = source.width;    </span><br><span class="line">    <span class="keyword">this</span>-&gt;height = source.height;    </span><br><span class="line">    <span class="keyword">this</span>-&gt;color = source.color;  </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></div>
+
+<p>This is a snippet from Mosh’s C++ course, I doubted that: </p>
+<ul>
+<li>Why we have to use <code>-&gt; </code> to acess <code>this</code> (pointer points to current object) ‘s member, while we can use dot operator <code>.</code> to access <code>source</code> ‘s member.</li>
+<li>What is the esstential of passing parameter by reference</li>
+<li>What are the differences between - Passing parameters directly by variable &#x2F; Passing parameters by referencing &#x2F; Passing parameters by pointers</li>
+</ul>
+<p>Great question! Let’s break this down step-by-step to clarify why <code>-&gt;</code> is used for <code>this</code> while the dot operator (<code>.</code>) is used for <code>source</code> in this copy constructor.</p>
+<h2 id="Access-Way-Question"><a href="#Access-Way-Question" class="headerlink" title="Access Way Question"></a><strong>Access Way Question</strong></h2><p>This is a <strong>copy constructor</strong> for a <code>Rectangle</code> class in C++. It takes a <strong>constant reference</strong> to another <code>Rectangle</code> object (<code>source</code>) and copies its member variables (<code>width</code>, <code>height</code>, <code>color</code>) into the current object being constructed. The keyword <code>this</code> is a pointer to the current object.</p>
+<p>Here’s the code again for reference:</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Rectangle::<span class="built_in">Rectangle</span>(<span class="type">const</span> Rectangle&amp; source) &#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;width = source.width;</span><br><span class="line">    <span class="keyword">this</span>-&gt;height = source.height;  </span><br><span class="line">    <span class="keyword">this</span>-&gt;color = source.color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Why-this-Uses"><a href="#Why-this-Uses" class="headerlink" title="Why this Uses -&gt;?"></a>Why <code>this</code> Uses <code>-&gt;</code>?</h3><ul>
+<li><strong><code>this</code> is a pointer</strong>: In C++, <code>this</code> is a special keyword that represents a pointer to the current object. Since it’s a pointer (of type <code>Rectangle*</code> in this case), we use the arrow operator <code>-&gt;</code> to access the members of the object it points to.</li>
+<li><strong>Arrow operator (<code>-&gt;</code>)</strong>: The <code>-&gt;</code> operator is used to dereference a pointer and access a member of the object it points to. So, <code>this-&gt;width</code> means “access the <code>width</code> member of the object that <code>this</code> points to.” We can also use a complicated OG style to do this <code>(*this).width</code>, which is equivalent to arrow operator access.</li>
+<li><strong>Why not <code>.</code> with <code>this</code>?</strong>: The dot operator (<code>.</code>) is used for objects or references, not pointers. If we tried <code>this.width</code>, it would be a syntax error because <code>this</code> is a pointer (address), not an object itself.</li>
+</ul>
+<h3 id="Why-source-Uses"><a href="#Why-source-Uses" class="headerlink" title="Why source Uses .?"></a>Why <code>source</code> Uses <code>.</code>?</h3><ul>
+<li><strong><code>source</code> is a reference</strong>: The parameter <code>source</code> is declared as <code>const Rectangle&amp; source</code>, meaning it’s a reference to a <code>Rectangle</code> object (not a pointer). <strong>In C++, a reference acts like an alias for the object it refers to,</strong> so we can use the dot operator (<code>.</code>) to access its members directly.</li>
+<li><strong>Dot operator (<code>.</code>)</strong>: The <code>.</code> operator is used to access members of an object or a reference to an object. So, <code>source.width</code> means “access the <code>width</code> member of the <code>source</code> object.”</li>
+<li><strong>Why not <code>-&gt;</code> with <code>source</code>?</strong>: If we tried <code>source-&gt;width</code>, it would be incorrect because <code>source</code> is not a pointer—it’s a reference. The <code>-&gt;</code> operator is only for pointers.</li>
+</ul>
+<h3 id="Conclusion-Extension"><a href="#Conclusion-Extension" class="headerlink" title="Conclusion &amp; Extension"></a>Conclusion &amp; Extension</h3><ul>
+<li><strong><code>this</code></strong>: A pointer (<code>Rectangle*</code>), so use <code>-&gt;</code>.</li>
+<li><strong><code>source</code></strong>: A reference (<code>const Rectangle&amp;</code>), so use <code>.</code>.</li>
+<li>This distinction comes from how C++ handles pointers versus references. Hope that clears it up! Let me know if we have more questions.</li>
+</ul>
+<h2 id="Refrence’s-Feature-in-C"><a href="#Refrence’s-Feature-in-C" class="headerlink" title="Refrence’s Feature in C++"></a><strong>Refrence’s Feature in C++</strong></h2><p>In C++, a reference (e.g., Rectangle&amp;) is a way to create an <strong>alias</strong> for an existing object. <strong>It’s not a separate object or a copy</strong>—it’s just another name for the <strong>same object in memory</strong>. When we use a reference, we’re directly manipulating the original object, as if we were using its original name.</p>
+<p>When we pass an object by reference (using &amp;), we’re passing an <strong>alias</strong> to the original object, not a copy. The function works directly with the original object.</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Rectangle::<span class="built_in">Rectangle</span>(<span class="type">const</span> Rectangle&amp; source) &#123;</span><br><span class="line">    width = source.width;</span><br><span class="line">    height = source.height;</span><br><span class="line">    color = source.color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>Here, <code>source</code> is a reference (<code>const Rectangle&amp;</code>). It’s an alias for whatever <code>Rectangle</code> object is passed in, so accessing <code>source.width</code> is exactly the same as accessing the original object’s width.</p>
+<ul>
+<li><strong>No copy is created</strong>: The function uses the original object directly via the reference. No duplication happens, so there’s no call to the copy constructor for the parameter itself.</li>
+<li><strong>Original can be modified</strong>: If the reference isn’t const, changes to the parameter affect the original object.</li>
+<li><strong>Performance benefit</strong>: Passing by reference is more efficient because it avoids copying the object, especially for large or complex objects.</li>
+<li><strong>Use case</strong>: Pass by reference when we want to avoid copying (for efficiency) or when the function needs to modify the original object.</li>
+</ul>
+<p>In our copy constructor:</p>
+<ul>
+<li>The <code>const</code> ensures source can’t be modified inside the constructor.</li>
+<li>It’s still a reference, so no copy of source is made when passing it—just an alias to the original object.</li>
+</ul>
+<p>A reference acts as an alias because, at the language level, C++ ensures that any operation on the reference (e.g., reading or writing) is performed directly on the object it refers to. Unlike a pointer, which stores an address and requires dereferencing, a reference is designed to be <strong>transparent</strong>—we use it like the object itself, with the dot operator (<code>.</code>), and the compiler handles the rest.</p>
+<p>But how does this work under the hood? </p>
+<h2 id="What-Exactly-the-Implementation-of-Reference"><a href="#What-Exactly-the-Implementation-of-Reference" class="headerlink" title="What Exactly the Implementation of Reference"></a>What Exactly the Implementation of Reference</h2><p>At a high level, references are a C++ abstraction, but at a low level (in the compiled machine code), they are typically implemented <strong>using pointers</strong> or <strong>direct memory access</strong>. Here’s a detailed look:</p>
+<h3 id="1-References-Are-Not-Objects"><a href="#1-References-Are-Not-Objects" class="headerlink" title="1. References Are Not Objects"></a>1. <strong>References Are Not Objects</strong></h3><ul>
+<li><strong>A reference doesn’t have its own memory storage</strong>. <strong>It’s not a separate entity</strong> like a variable or a pointer. Instead, it’s just a <strong>name</strong> for an existing object’s memory location.</li>
+<li>When we declare <code>Rectangle&amp; ref = someRect;</code>, <code>ref</code> doesn’t get its own memory—<strong>it’s bound to the memory of  the object</strong> <code>someRect</code>.</li>
+<li>This is why we can’t have a “null reference” (unlike a null pointer) or reassign a reference to another object after initialisation. <strong>Once a reference is bound to an object, it’s permanently tied to it.</strong></li>
+<li><strong>We can never reassign a reference to another object after initialisation</strong></li>
+</ul>
+<h3 id="2-Compiler’s-Role"><a href="#2-Compiler’s-Role" class="headerlink" title="2. Compiler’s Role"></a>2. <strong>Compiler’s Role</strong></h3><ul>
+<li>The C++ compiler translates reference operations into direct memory accesses to the referred object. When we write <code>source.width</code>, the compiler knows <code>source</code> is an alias for a specific <code>Rectangle</code> object and generates code to access that object’s <code>width</code> member directly.</li>
+<li>In most cases, the compiler optimises references so they don’t add any runtime overhead( Runtime Overhead: Extra computing resources used during execution) compared to using the object directly.</li>
+</ul>
+<h3 id="3-References-as-Pointers-Under-the-Hood"><a href="#3-References-as-Pointers-Under-the-Hood" class="headerlink" title="3. References as Pointers Under the Hood"></a>3. <strong>References as Pointers Under the Hood</strong></h3><ul>
+<li>In many implementations, references are <strong>internally treated like pointers</strong> by the compiler, but with syntactic sugar to make them easier to use. (<strong>Easier than pointers LOL</strong>)</li>
+<li>For example, when we pass <code>const Rectangle&amp; source</code>, the compiler might pass the <strong>memory address</strong> of the <code>Rectangle</code> object (like a <code>const Rectangle*</code>). However, unlike a pointer, we don’t need to dereference it with <code>*</code> or <code>-&gt;</code>—the compiler automatically translates <code>source.width</code> to the equivalent of <code>(*source).width</code> or <code>source-&gt;width</code> in the generated code.</li>
+<li>The key difference is that references are <strong>safer</strong> and <strong>more restricted</strong> than pointers:<ul>
+<li>References can’t be null (they must be initialised to a valid object).</li>
+<li>References can’t be reassigned to refer to another object.</li>
+<li>References don’t require explicit dereferencing syntax.</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-Memory-Lawet"><a href="#4-Memory-Lawet" class="headerlink" title="4. Memory Lawet"></a>4. <strong>Memory Lawet</strong></h3><ul>
+<li>Suppose we have a <code>Rectangle</code> object like this:<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rectangle r1&#123;<span class="number">5</span>, <span class="number">5</span>, <span class="string">&quot;red&quot;</span>&#125;;</span><br></pre></td></tr></table></figure></div>
+In memory, <code>r1</code> might look like:<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[width: 5 | height: 5 | color: <span class="string">&quot;red&quot;</span>]</span><br><span class="line">^ Address: 0x1000 (example)</span><br></pre></td></tr></table></figure></div></li>
+<li>When we pass <code>r1</code> as a reference:<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Rectangle <span class="title">r2</span><span class="params">(r1)</span></span>; <span class="comment">// Calls Rectangle::Rectangle(const Rectangle&amp; source)</span></span><br></pre></td></tr></table></figure></div>
+The <code>source</code> reference is just another name for the memory at <code>0x1000</code>. Accessing <code>source.width</code> goes straight to <code>0x1000</code> to read the value <code>5</code>. No copy of the object is made—only the address is used internally.</li>
+</ul>
+<h3 id="5-No-Overhead-for-Passing"><a href="#5-No-Overhead-for-Passing" class="headerlink" title="5. No Overhead for Passing"></a>5. <strong>No Overhead for Passing</strong></h3><ul>
+<li>Passing a reference is as efficient as passing a pointer because it typically involves passing a memory address (4 or 8 bytes on most systems). This is why <code>const Rectangle&amp;</code> is preferred over passing by value (which copies the entire object) in our copy constructor.</li>
+<li>For example:<ul>
+<li>By value: Copies <code>width</code>, <code>height</code>, <code>color</code> (potentially expensive, especially if <code>color</code> is a <code>std::string</code> with dynamic memory).</li>
+<li>By reference: Passes a single address, no copying of the object’s data.</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-Const-References"><a href="#6-Const-References" class="headerlink" title="6. Const References"></a>6. <strong>Const References</strong></h3><ul>
+<li><p>In our constructor, <code>const Rectangle&amp; source</code> adds a guarantee that the referred object won’t be modified. The compiler enforces this by preventing writes to <code>source</code>’s members (e.g., <code>source.width = 10;</code> would cause a compile-time error).</p>
+</li>
+<li><p>Under the hood, the <code>const</code> qualifier might translate to a <code>const Rectangle*</code> in the generated code, ensuring the memory at that address isn’t altered.</p>
+</li>
+</ul>
+<p>Let’s imagine a simplified assembly-like view of our copy constructor with <code>const Rectangle&amp; source</code>. Assume <code>Rectangle</code> has <code>width</code> (int), <code>height</code> (int), and <code>color</code> (string), and <code>r1</code> is at address <code>0x1000</code>.</p>
+<ol>
+<li><p><strong>Calling the Constructor</strong>:</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Rectangle <span class="title">r2</span><span class="params">(r1)</span></span>;</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>The compiler passes <code>r1</code>’s address (<code>0x1000</code>) to the constructor, similar to a pointer.</li>
+</ul>
+</li>
+<li><p><strong>Inside the Constructor</strong>:</p>
+<ul>
+<li><code>source</code> is effectively a name for address <code>0x1000</code>.</li>
+<li><code>source.width</code> translates to “read 4 bytes at <code>0x1000</code>” (assuming <code>width</code> is at offset 0).</li>
+<li><code>this-&gt;width = source.width;</code> translates to “write that value to the <code>width</code> field of the new object” (e.g., at <code>0x2000</code> if <code>r2</code> is there).</li>
+</ul>
+</li>
+<li><p><strong>Generated Code (Pseudo-Assembly)</strong>:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">; Pass r1&#x27;s address (0x1000) to constructor</span><br><span class="line">mov register, 0x1000</span><br><span class="line">; Read source.width (at 0x1000)</span><br><span class="line">mov eax, [register + 0]</span><br><span class="line">; Write to this-&gt;width (this at 0x2000)</span><br><span class="line">mov [this + 0], eax</span><br><span class="line">; Repeat for height, color...</span><br></pre></td></tr></table></figure></div>
+<p>The actual implementation of it will be slightly different depends on different compiler.</p>
+</li>
+</ol>
+<h3 id="Edge-Cases-and-Notes"><a href="#Edge-Cases-and-Notes" class="headerlink" title="Edge Cases and Notes"></a>Edge Cases and Notes</h3><ol>
+<li><p><strong>Reference initialisation</strong>:</p>
+<ul>
+<li>A reference must be initialised when declared:<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Rectangle&amp; ref = r1; <span class="comment">// OK</span></span><br><span class="line">Rectangle&amp; ref;      <span class="comment">// Error: uninitialised</span></span><br></pre></td></tr></table></figure></div></li>
+<li>This ensures a reference always aliases a valid object.</li>
+</ul>
+</li>
+<li><p><strong>No Rebinding</strong>:</p>
+<ul>
+<li>Once bound, a reference can’t alias a different object:<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Rectangle r1, r2;</span><br><span class="line">Rectangle&amp; ref = r1;</span><br><span class="line">ref = r2; <span class="comment">// Doesn’t rebind! Assigns r2’s values to r1</span></span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+<li><p><strong>Temporary Objects</strong>:</p>
+<ul>
+<li><p>A <strong>temporary object</strong> in C++ is an unnamed object created as a result of an expression, typically with a short lifetime. </p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Rectangle</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="string">&quot;blue&quot;</span>)  <span class="comment">// Creates a temporary Rectangle object</span></span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<ul>
+<li><p>In C++, <strong>non-const lvalue references</strong> (e.g., <code>Rectangle&amp;</code>) can only bind to <strong>lvalues</strong>—objects that have a name and persist beyond a single expression. Temporaries, however, are <strong>rvalues</strong>—they’re fleeting, unnamed objects that typically don’t have a persistent identity.</p>
+<p>Here’s the key rule:</p>
+<ul>
+<li>A <strong>non-const lvalue reference</strong> (<code>Rectangle&amp;</code>) <strong>cannot bind to an rvalue</strong> (like a temporary).</li>
+<li>A <strong>const lvalue reference</strong> (<code>const Rectangle&amp;</code>) <strong>can bind to an rvalue</strong>, and it extends the temporary’s lifetime to match the reference’s scope.</li>
+</ul>
+</li>
+<li><p>References can bind to temporaries if declared as <code>const</code>:</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(<span class="type">const</span> Rectangle&amp; r)</span></span>;</span><br><span class="line"><span class="built_in">func</span>(<span class="built_in">Rectangle</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="string">&quot;blue&quot;</span>)); <span class="comment">// OK: temporary Rectangle</span></span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+</ol>
+<h2 id="Passing-Parameters-by-Value-v-s-Reference-v-s-Pointer"><a href="#Passing-Parameters-by-Value-v-s-Reference-v-s-Pointer" class="headerlink" title="Passing Parameters by Value v.s. Reference v.s. Pointer"></a>Passing Parameters by Value v.s. Reference v.s. Pointer</h2><table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Pass by Value</th>
+<th>Pass by Reference</th>
+<th>Pass by Pointer</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Syntax (Parameter)</strong></td>
+<td>Rectangle obj</td>
+<td>Rectangle&amp; obj</td>
+<td>Rectangle* obj</td>
+</tr>
+<tr>
+<td><strong>Syntax (Access)</strong></td>
+<td>obj.width (dot)</td>
+<td>obj.width (dot)</td>
+<td>obj-&gt;width (arrow)</td>
+</tr>
+<tr>
+<td><strong>Copying</strong></td>
+<td>Full copy of object</td>
+<td>No copy—just a reference</td>
+<td>No copy—just an address</td>
+</tr>
+<tr>
+<td><strong>Performance</strong></td>
+<td>Slow for large objects</td>
+<td>Fast (no copying)</td>
+<td>Fast (no copying)</td>
+</tr>
+<tr>
+<td><strong>Memory Usage</strong></td>
+<td>High (duplicate object)</td>
+<td>Low (reference, ~address)</td>
+<td>Low (pointer, ~address)</td>
+</tr>
+<tr>
+<td><strong>Modification</strong></td>
+<td>Affects copy only</td>
+<td>Affects original (unless const)</td>
+<td>Affects original (unless const)</td>
+</tr>
+<tr>
+<td><strong>Pass Syntax</strong></td>
+<td>someFunction(r)</td>
+<td>someFunction(r)</td>
+<td>someFunction(&amp;r)</td>
+</tr>
+<tr>
+<td><strong>Nullability</strong></td>
+<td>Always valid (copy made)</td>
+<td>Always valid (bound to object)</td>
+<td>Can be nullptr (needs check)</td>
+</tr>
+<tr>
+<td><strong>Use in Constructors</strong></td>
+<td>Rarely used (inefficient)</td>
+<td>Common (const Rectangle&amp;)</td>
+<td>Possible but less common</td>
+</tr>
+</tbody></table>
+<h3 id="1-Passing-by-Value-Object-Itself"><a href="#1-Passing-by-Value-Object-Itself" class="headerlink" title="1. Passing by Value (Object Itself)"></a>1. Passing by Value (Object Itself)</h3><p>When we pass an object by value, a complete copy of the object is made and passed to the function.</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">someFunction</span><span class="params">(Rectangle obj)</span> </span>&#123;    </span><br><span class="line">    obj.width = <span class="number">10</span>;  <span class="comment">// Modifies the copy, not the original </span></span><br><span class="line">&#125; </span><br><span class="line"><span class="function">Rectangle <span class="title">r</span><span class="params">(<span class="number">5</span>, <span class="number">5</span>, <span class="string">&quot;red&quot;</span>)</span></span>; </span><br><span class="line"><span class="built_in">someFunction</span>(r); </span><br><span class="line"><span class="comment">// r is unchanged: width = 5, height = 5, color = &quot;red&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="Key-Characteristics"><a href="#Key-Characteristics" class="headerlink" title="Key Characteristics"></a>Key Characteristics</h4><ul>
+<li><strong>Copy created</strong>: The entire object is duplicated using the copy constructor.</li>
+<li><strong>Original unaffected</strong>: Changes inside the function only affect the copy.</li>
+<li><strong>Performance</strong>: Expensive for large objects due to copying overhead.</li>
+<li><strong>Syntax</strong>: Uses the dot operator (.) to access members (e.g., obj.width).</li>
+</ul>
+<hr>
+<h3 id="2-Passing-by-Reference"><a href="#2-Passing-by-Reference" class="headerlink" title="2. Passing by Reference"></a>2. Passing by Reference</h3><p>When we pass by reference, we pass an alias to the original object, not a copy.</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">someFunction</span><span class="params">(Rectangle&amp; obj)</span> </span>&#123;    </span><br><span class="line">    obj.width = <span class="number">10</span>;  <span class="comment">// Modifies the original </span></span><br><span class="line">&#125; </span><br><span class="line"><span class="function">Rectangle <span class="title">r</span><span class="params">(<span class="number">5</span>, <span class="number">5</span>, <span class="string">&quot;red&quot;</span>)</span></span>; </span><br><span class="line"><span class="built_in">someFunction</span>(r); </span><br><span class="line"><span class="comment">// r is changed: width = 10, height = 5, color = &quot;red&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>With <code>const</code></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">someFunction</span><span class="params">(<span class="type">const</span> Rectangle&amp; obj)</span> </span>&#123;    </span><br><span class="line">    obj.width = <span class="number">10</span>;  <span class="comment">// Error: const prevents modification </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="Key-Characteristics-1"><a href="#Key-Characteristics-1" class="headerlink" title="Key Characteristics"></a>Key Characteristics</h4><ul>
+<li><strong>No copy</strong>: The function works directly with the original object via the reference.</li>
+<li><strong>Original modifiable</strong>: Unless const is used, changes affect the original.</li>
+<li><strong>Performance</strong>: Efficient—no copying overhead.</li>
+<li><strong>Syntax</strong>: Uses the dot operator (<code>.</code>) because a reference acts like the object itself (e.g., <code>obj.width</code>).</li>
+</ul>
+<hr>
+<h3 id="3-Passing-by-Pointer"><a href="#3-Passing-by-Pointer" class="headerlink" title="3. Passing by Pointer"></a>3. Passing by Pointer</h3><p>When we pass by pointer, we pass the memory address of the object. The function works with that address and must dereference it to access the object.</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">someFunction</span><span class="params">(Rectangle* obj)</span> </span>&#123;    </span><br><span class="line">    obj-&gt;width = <span class="number">10</span>;  <span class="comment">// Modifies the original via the pointer </span></span><br><span class="line">&#125; </span><br><span class="line"><span class="function">Rectangle <span class="title">r</span><span class="params">(<span class="number">5</span>, <span class="number">5</span>, <span class="string">&quot;red&quot;</span>)</span></span>; </span><br><span class="line"><span class="built_in">someFunction</span>(&amp;r);  </span><br><span class="line"><span class="comment">// Pass the address of r </span></span><br><span class="line"><span class="comment">// r is changed: </span></span><br><span class="line"><span class="comment">// width = 10, height = 5, color = &quot;red&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>with <code>const</code></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">someFunction</span><span class="params">(<span class="type">const</span> Rectangle* obj)</span> </span>&#123;    </span><br><span class="line">    obj-&gt;width = <span class="number">10</span>;  <span class="comment">// Error: const prevents modification &#125;</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="Key-Characteristics-2"><a href="#Key-Characteristics-2" class="headerlink" title="Key Characteristics"></a>Key Characteristics</h4><ul>
+<li><strong>No copy</strong>: Only the address (a small value, typically 4 or 8 bytes) is passed, not the object itself.</li>
+<li><strong>Original modifiable</strong>: The pointer allows modification of the original object unless const is used.</li>
+<li><strong>Performance</strong>: Efficient—no copying of the object, just a pointer.</li>
+<li><strong>Syntax</strong>: Uses the arrow operator (<code>-&gt;</code>) to access members (e.g., <code>obj-&gt;width</code>) because obj is a pointer. Alternatively, we could dereference with * and use the dot operator (e.g., <code>(*obj).width</code>), but -&gt; is more common.</li>
+<li><strong>Explicit address</strong>: Caller must pass the address using &amp; (e.g., <code>someFunction(&amp;r)</code>).</li>
+<li><strong>Nullable</strong>: Pointers can be nullptr, so we might need to check for validity.</li>
+</ul>
+<h2 id="Why-Use-const-Rectangle-in-the-Copy-Constructor"><a href="#Why-Use-const-Rectangle-in-the-Copy-Constructor" class="headerlink" title="Why Use const Rectangle&amp; in the Copy Constructor?"></a><strong>Why Use <code>const Rectangle&amp;</code> in the Copy Constructor?</strong></h2><p>In our example:</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rectangle::<span class="built_in">Rectangle</span>(<span class="type">const</span> Rectangle&amp; source)</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><strong>Efficiency</strong>: Passing by reference avoids making an unnecessary copy of the Rectangle object being passed in.</li>
+<li><strong>Safety</strong>: The const ensures the constructor doesn’t accidentally modify the source object, which is only meant to be copied from.</li>
+<li><strong>Correctness</strong>: If it were Rectangle source (by value), the copy constructor would be called to create the parameter source, leading to infinite</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Reflection on C++ Parameter Passing</li>
+        <li><strong>Author:</strong> Ricardo Pu</li>
+        <li><strong>Created at
+                :</strong> 2025-04-11 10:40:32</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-04-11 12:20:13
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://ricardopotter.github.io/RicardoBlog/2025/04/11/Reflection-on-CPP-Parameter-Passing/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/CS-Learning/">#CS Learning</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/CPP/">#CPP</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/Vocabulary/">#Vocabulary</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/English-Learning/">#English Learning</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/SLA/">#SLA</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/RicardoBlog/2025/04/11/Reflection-on-Object-Initialisation-Copy-vs-Brace-Initialisation-in-C/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Reflection on Object Initialisation: Copy vs. Brace Initialisation in C++</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-swup-reload-script
+            src="//cdn.staticfile.org/gitalk/1.8.0/gitalk.min.js"></script>
+    <script data-swup-reload-script>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: 'Ov23liGO2xyBBdllskJp',
+                    clientSecret: '4a88fea52acc1bb7ad9f8b5796eca97de4427af9',
+                    repo: 'RicardoBlog',
+                    owner: 'RicardoPotter',
+                    admin: ['RicardoPotter'],
+                    id: __gitalk__pathname,
+                    language: 'en',
+                    proxy: 'https://github.com/login/oauth/access_token'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Reflection on C++ Parameter Passing</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Access-Way-Question"><span class="nav-text">Access Way Question</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-this-Uses"><span class="nav-text">Why this Uses -&gt;?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-source-Uses"><span class="nav-text">Why source Uses .?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conclusion-Extension"><span class="nav-text">Conclusion &amp; Extension</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Refrence%E2%80%99s-Feature-in-C"><span class="nav-text">Refrence’s Feature in C++</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-Exactly-the-Implementation-of-Reference"><span class="nav-text">What Exactly the Implementation of Reference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-References-Are-Not-Objects"><span class="nav-text">1. References Are Not Objects</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Compiler%E2%80%99s-Role"><span class="nav-text">2. Compiler’s Role</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-References-as-Pointers-Under-the-Hood"><span class="nav-text">3. References as Pointers Under the Hood</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Memory-Lawet"><span class="nav-text">4. Memory Lawet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-No-Overhead-for-Passing"><span class="nav-text">5. No Overhead for Passing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Const-References"><span class="nav-text">6. Const References</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Edge-Cases-and-Notes"><span class="nav-text">Edge Cases and Notes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Passing-Parameters-by-Value-v-s-Reference-v-s-Pointer"><span class="nav-text">Passing Parameters by Value v.s. Reference v.s. Pointer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Passing-by-Value-Object-Itself"><span class="nav-text">1. Passing by Value (Object Itself)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Key-Characteristics"><span class="nav-text">Key Characteristics</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Passing-by-Reference"><span class="nav-text">2. Passing by Reference</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Key-Characteristics-1"><span class="nav-text">Key Characteristics</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Passing-by-Pointer"><span class="nav-text">3. Passing by Pointer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Key-Characteristics-2"><span class="nav-text">Key Characteristics</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-Use-const-Rectangle-in-the-Copy-Constructor"><span class="nav-text">Why Use const Rectangle&amp; in the Copy Constructor?</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/RicardoBlog/">Ricardo Pu</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        40 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/RicardoBlog/js/libs/Swup.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/RicardoBlog/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/RicardoBlog/js/utils.js" type="module"></script>
+
+<script src="/RicardoBlog/js/main.js" type="module"></script>
+
+<script src="/RicardoBlog/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/RicardoBlog/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/RicardoBlog/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/RicardoBlog/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/RicardoBlog/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/RicardoBlog/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/RicardoBlog/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/RicardoBlog/js/tools/runtime.js"></script>
+
+    
+<script src="/RicardoBlog/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/RicardoBlog/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/RicardoBlog/js/libs/Typed.min.js"></script>
+
+  
+<script src="/RicardoBlog/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/RicardoBlog/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/RicardoBlog/js/layouts/toc.js" type="module"></script>
+
+<script src="/RicardoBlog/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>

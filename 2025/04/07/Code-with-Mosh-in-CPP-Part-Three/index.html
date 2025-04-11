@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Ricardo Pu">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://ricardopotter.github.io/RicardoBlog/2025/04/07/code-with-mosh-in-cpp-part-three/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Tutorial excerpts from Mosh’s CPP course part 2. OOP FOCUSED!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Code with Mosh in CPP Part Three">
+<meta property="og:url" content="https://ricardopotter.github.io/RicardoBlog/2025/04/07/Code-with-Mosh-in-CPP-Part-Three/index.html">
+<meta property="og:site_name" content="Ricardo Pu&#39;s Blog">
+<meta property="og:description" content="Tutorial excerpts from Mosh’s CPP course part 2. OOP FOCUSED!">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/user-attachments/assets/1c9cfbaf-0425-4124-a3f1-a3dd61f9302b">
+<meta property="article:published_time" content="2025-04-07T00:19:56.000Z">
+<meta property="article:modified_time" content="2025-04-11T11:24:13.128Z">
+<meta property="article:author" content="Ricardo Pu">
+<meta property="article:tag" content="CS Learning">
+<meta property="article:tag" content="CPP">
+<meta property="article:tag" content="Vocabulary">
+<meta property="article:tag" content="English Learning">
+<meta property="article:tag" content="SLA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/user-attachments/assets/1c9cfbaf-0425-4124-a3f1-a3dd61f9302b">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg">
+    <meta name="theme-color" content="#008080">
+    <link rel="shortcut icon" href="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Code with Mosh in CPP Part Three -
+        
+        Ricardo&#39;s Blog
+    </title>
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/RicardoBlog/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/RicardoBlog/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    
+        
+<script src="/RicardoBlog/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"ricardopotter.github.io","root":"/RicardoBlog/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":5,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#008080","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Ricardo's Blog","subtitle":{"text":["躲进小楼成一统","汉堡中的生菜","乌鸦的世界天鹅也有罪"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/RicardoMiles","instagram":"https://www.instagram.com/ricardomilesgarcia/","zhihu":null,"twitter":null,"email":"pujinjian@hotmail.com","steam":"https://steamcommunity.com/profiles/76561198400981711/","weibo":"https://weibo.com/u/3226308805"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-solid fa-folder"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/About","Github":"https://github.com/RicardoMiles","Github2":"https://github.com/RicardoPotter","Blog":"https://ricardopotter.github.io/","Friends":"/Links"}},"Links":{"icon":"fa-regular fa-link","submenus":{"子昂的博客":"https://supgoon.com/","Google":"https://google.com","ChatGPT":"https://chatgpt.com/"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":"躲进小楼成一统","show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"Links":{"path":"/links","icon":"fa-regular fa-link"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":10}},"footerStart":"2024/02/19 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Ricardo&#39;s Blog
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [40,0],
+                translateZ: 0,
+                opacity: [0,1],
+                filter: ['blur(5px)', 'blur(0px)'], // Starting from blurred to unblurred
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i,
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0,-40],
+                opacity: [1,0],
+                filter: ['blur(0px)', 'blur(5px)'], // Ending from unblurred to blurred
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: (el, i) => 100 + 30 * i,
+                complete: function() {
+                    hidePreloader(); // Call hidePreloader after the animation completes
+                }
+            });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+                <a class="logo-image" href="/RicardoBlog/">
+                    <img src="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/RicardoBlog/">
+                
+                Ricardo&#39;s Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/tags"
+                                        >
+                                    <i class="fa-regular fa-tags fa-fw"></i>
+                                    TAGS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/categories"
+                                        >
+                                    <i class="fa-solid fa-folder fa-fw"></i>
+                                    CATEGORIES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/RicardoBlog/About">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/RicardoMiles">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/RicardoPotter">
+                                                    GITHUB2
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="https://ricardopotter.github.io/">
+                                                    BLOG
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/RicardoBlog/Links">
+                                                    FRIENDS
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-link fa-fw"></i>
+                                    LINKS
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://supgoon.com/">
+                                                    子昂的博客
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://google.com">
+                                                    GOOGLE
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://chatgpt.com/">
+                                                    CHATGPT
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/tags"
+                        >
+                            <span>
+                                TAGS
+                            </span>
+                            
+                                <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/categories"
+                        >
+                            <span>
+                                CATEGORIES
+                            </span>
+                            
+                                <i class="fa-solid fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/RicardoBlog/About">ME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/RicardoMiles">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/RicardoPotter">GITHUB2</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="https://ricardopotter.github.io/">BLOG</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/RicardoBlog/Links">FRIENDS</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-Links"
+                        >
+                            <span>
+                                LINKS
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-Links">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://supgoon.com/">子昂的博客</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://google.com">GOOGLE</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://chatgpt.com/">CHATGPT</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+                    
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/RicardoBlog/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">41</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/RicardoBlog/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/RicardoBlog/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">40</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Code with Mosh in CPP Part Three</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/RicardoBlog/images/AcatarPic.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Ricardo Pu</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-04-07 01:19:56</span>
+        <span class="mobile">2025-04-07 01:19:56</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-04-11 12:24:13</span>
+            <span class="mobile">2025-04-11 12:24:13</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/RicardoBlog/categories/Coding/">Coding</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/RicardoBlog/tags/CS-Learning/">CS Learning</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/RicardoBlog/tags/CPP/">CPP</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/RicardoBlog/tags/Vocabulary/">Vocabulary</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/RicardoBlog/tags/English-Learning/">English Learning</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/RicardoBlog/tags/SLA/">SLA</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h2 id="What-is-OOP"><a href="#What-is-OOP" class="headerlink" title="What is OOP"></a>What is OOP</h2><p>Program paradigm - Style of programming</p>
+<ul>
+<li>Procedural</li>
+<li>Functional</li>
+<li>Object-Oriented</li>
+<li>Event-Driven</li>
+</ul>
+<p>Functional and OOP is the two most popular ones nowadays </p>
+<p><strong>Object</strong> - A software entity that has <strong>attributes</strong> and <strong>functions</strong></p>
+<ul>
+<li>attributes - properties</li>
+<li>function - methods</li>
+</ul>
+<p>Class - A class is a blueprint or recipe for creating objects</p>
+<p>We can represent a classs using vision language called UML - which is short for Unified Modelling Language </p>
+<p>In UML, we use a box with three sections, on the top we have the class name, in the middle section we list attributes or variables that holds data, at bottom section we list functions. These variables and functions are called <strong>members of the class</strong></p>
+<p><strong>Structure is more about data, Class is more about DATA+BEHAVIOR</strong>. This is one of the core principles of OOP called <strong>Encapsulation</strong> (Combining the data and functions that operate on the data into one unite)</p>
+<p>An object is an instance of class </p>
+<p>In UML we call the data part attributes, in C++ we call them member variable, in other languages we call them fields or properties. All of those terminology is the same - a variable inside a class</p>
+<p> Methods &#x3D; Member functions </p>
+<h2 id="Define-a-Class"><a href="#Define-a-Class" class="headerlink" title="Define a Class"></a>Define a Class</h2><p>Use Clion’s feature of creating a C++ class will automatically create a <code>Classname.h</code> headerfile and a <code>Classname .cpp</code> file with same name which is linked. We can also do these thing manually.</p>
+<p>In the headerfile, we are going to define the features of class. We are gonna include this headerfile later</p>
+<p>we have header guard  in header files to prevent this headerfile being included multiple time in the compilation process</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> ADVANCED_RECTANGLE_H</span></span><br><span class="line"><span class="comment">// if this constant is not defined</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ADVANCED_RECTANGLE_H</span></span><br><span class="line"><span class="comment">// we are gonna define it </span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Rectangle</span>&#123;</span><br><span class="line">    <span class="type">int</span> width;</span><br><span class="line">    <span class="type">int</span> height;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">draw</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getArea</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">// ADVANCED_RECTANGLE_H</span></span></span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>We use double quotation marks to include header files from out own project while using angle bracket to include headers from standard library </li>
+<li>We only do function declaration or aka function prototype in header files, the actual implementation is gonna go our cpp files</li>
+<li>In cpp files we qualify the function by its class name using double colon<code>::</code> which is called scope resolution operator</li>
+</ul>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Rectangle.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    Here we have to qualify the draw() function</span></span><br><span class="line"><span class="comment">    With its class name</span></span><br><span class="line"><span class="comment">    Double colon :: is called scope resolution operator</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Rectangle::draw</span><span class="params">()</span></span>&#123; </span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;drawing a rectangle&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> Rectangle:: <span class="built_in">getArea</span>()&#123;</span><br><span class="line">    <span class="keyword">return</span> width * height ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Creating-Objects"><a href="#Creating-Objects" class="headerlink" title="Creating Objects"></a>Creating Objects</h2><p>We are not gonna include <code>.cpp</code> file of class implementation, we only <code>#include &quot;ClassName.h&quot;</code> because</p>
+<p>The reason we have two files per class is to reduce compilation time, our main file <code>main.cpp</code> is independent from the <code>Rectangle.h</code></p>
+<p>When we do change to <code>ClassName.cpp</code>, only itself will be recompiled. but if we do change to <code>ClassName.h</code> then every files that is depend on the <code>ClassName.h</code>  like <code>#include &quot;ClassName.h&quot;</code> will be recomipled. </p>
+<p>An object is an intance of a class, we can access the member of this object by dot operator like </p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ClassName object;</span><br><span class="line">object.membervariable = <span class="string">&quot;string&quot;</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>Compilation error will told us we can not access a private member of a class outside of the class. This is the main difference of classes and structures. </p>
+<ul>
+<li>In structures, when we declare members they are always public or accessible by default</li>
+<li>In classes, when we declare members, they are always private or inaccessible by default</li>
+</ul>
+<p>In order to make them public, we have to use keyword <code>public</code> by a colon <code>:</code> before all those public members declaration</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Rectangle</span>&#123;</span><br><span class="line"><span class="keyword">public</span>: </span><br><span class="line">    <span class="type">int</span> width;</span><br><span class="line">    <span class="type">int</span> height;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">draw</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getArea</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// Now all the members above is accessible and exposed outside this class</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>To compile a C++ project with a header file (e.g., ClassName.h), an implementation file (e.g., ClassName.cpp), and a main file (e.g., main.cpp), we can compile all files together into an executable using g++:</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -o myProgram main.cpp ClassName.cpp</span><br></pre></td></tr></table></figure></div>
+
+<p>The <strong>sequence</strong> of <code>main.cpp</code> and <code>ClassName.cpp</code> in the command does <strong>not</strong> matter for the compilation process itself. The g++ compiler processes all the source files listed (<code>main.cpp</code> and <code>ClassName.cpp</code>) and links them together into the executable (<code>myProgram</code>), regardless of the order in which they appear on the command line. Here’s why:</p>
+<p>We can also compile each .cpp file into an object file first, then link them:</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">g++ -c ClassName.cpp -o ClassName.o  <span class="comment"># Compile ClassName.cpp to object file </span></span><br><span class="line">g++ -c main.cpp -o main.o            <span class="comment"># Compile main.cpp to object file </span></span><br><span class="line">g++ main.o ClassName.o -o myProgram  <span class="comment"># Link object files into executable</span></span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><code>-c</code>: Compile without linking.</li>
+<li><code>-o</code>: Specify output file name.</li>
+</ul>
+<h2 id="Access-Modifier"><a href="#Access-Modifier" class="headerlink" title="Access Modifier"></a>Access Modifier</h2><p>Data hiding principle of OOP saves invalid value assignment -  A class should hide its internal data from the outside code and provide functions for accessing the data.</p>
+<p><code>public</code> <code>private</code> <code>protected</code> are access modifiers , as the best practice we add public section first then add private section </p>
+<h2 id="Getters-and-Setters"><a href="#Getters-and-Setters" class="headerlink" title="Getters and Setters"></a>Getters and Setters</h2><p>To achieve Data Hiding principle, by making them private, for each varibale we need two functions accessing one to get value one to set value. </p>
+<p>Getter is also called accessor</p>
+<p>Setter is also called mutator (to mutate something means to change something)</p>
+<p><code>this</code> is the pointer to current object, we need to de-reference it before we use dot operator to access the actual object, pointer is always just address</p>
+<p>Lots of ppl use <code>m_</code> M Underlined prefixed to differenciate the parameter and member variable with same name</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    A mosh preferred way to differenciate assignment variables</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Rectangle::setWidth</span><span class="params">(<span class="type">int</span> width)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(width &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="built_in">invalied_argument</span>(<span class="string">&quot;Width Error&quot;</span>);</span><br><span class="line">        <span class="comment">// Throw a exception</span></span><br><span class="line">    &#125;</span><br><span class="line">    (*<span class="keyword">this</span>).width = width;</span><br><span class="line">    <span class="comment">// shortcut for it would be like</span></span><br><span class="line">    <span class="comment">// this-&gt;width = width;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>We can also use ClassName followed by double colon to access current object’s private member variable like <code>Rectangle::width = width</code>, it is another equivalent</p>
+<ul>
+<li>Plus sign in UML means <code>public</code></li>
+<li>Hyphen sign in UML means <code>private</code></li>
+</ul>
+<p>Mosh’s implementation of a TextBox class suggested that </p>
+<ul>
+<li>When we pass a string parameter to fucntion, it is always better to pass it as a reference parameter like <code>void setValue(string&amp; value);</code> , value are not copied across function calls, this is for performance reasons</li>
+<li>Also it is better to declare the parameter a constant <code>void setValue(const string&amp; value);</code>, avoiding accidental modification on <code>value</code></li>
+</ul>
+<h2 id="Constructors"><a href="#Constructors" class="headerlink" title="Constructors"></a>Constructors</h2><p>Constructor is a special function inside class that initialising object, that could avoid the invalid calling of getter by properly do assignment to private variables at first.</p>
+<p>Consturctor doesn’t have return type, not even <code>void</code>, their name is exactly the same as the ClassName</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Rectangle</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Rectangle</span>(<span class="type">int</span> width, <span class="type">int</span> height);</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setWidth</span><span class="params">(<span class="type">int</span> width)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setHeight</span><span class="params">(<span class="type">int</span> height)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getWidth</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getHeight</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> width;</span><br><span class="line">    <span class="type">int</span> height;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<p>Using curely braces to initialise objects</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Rectangle rectangle&#123;<span class="number">10</span>,<span class="number">20</span>&#125;;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Member-Initialiser-List"><a href="#Member-Initialiser-List" class="headerlink" title="Member Initialiser List"></a>Member Initialiser List</h2><p>In modern C plus plus, our compiler clearly know the left <code>width</code>is our member variable, the <code>width</code> inside curely braces is paramter, we can do the same for <code>height</code> after comma </p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Rectangle::<span class="built_in">Rectangle</span>(<span class="type">int</span> width,<span class="type">int</span> height):width&#123;width&#125;,height&#123;height&#125;&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>A member initialiser list - techinique is slightly effiecient, but doesn’t give us access to do validations</p>
+<p>The approach is not exclusive with the tradition approach that do the initialisation inside of the body </p>
+<h2 id="The-Default-Constructor"><a href="#The-Default-Constructor" class="headerlink" title="The Default Constructor"></a>The Default Constructor</h2><p>A default constructor is a constructor with no parameters</p>
+<p>Just like functions we can always overload constructors, we can have two constructors with different signature</p>
+<p> In modern C++ we can tell our compiler to generate a default compiler for us in <code>ClassName.h</code> like this</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ClassName</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">ClassName</span>() = <span class="keyword">default</span>;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<p>Instead of do implementation in <code>ClassName.cpp</code> like this</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ClassName::<span class="built_in">ClassName</span>()&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>C plus plus compiler generator a default constructor for every class, that is the reason why we can create class and object without out manually and explicitly defined constructors.</p>
+<p>Compiler stops generating a default constructor for us until we declare a non-default constructor, that is why we can’t use the <code>ClassName ObjectName;</code> to declare an object in main program without giving it parameters. </p>
+<h2 id="Using-the-Explicit-Keyword"><a href="#Using-the-Explicit-Keyword" class="headerlink" title="Using the Explicit Keyword"></a>Using the Explicit Keyword</h2><p>Single-argument constructors must be marked explicit to avoid unintentional implicit conversion</p>
+<p>That is how implicit conversion happens</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Person</span>(<span class="type">int</span> age);</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>In <code>main.cpp</code> :</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#inlude <span class="string">&quot;Person.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">showPerson</span><span class="params">(Person person)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Person person&#123;<span class="number">20</span>&#125;;</span><br><span class="line">    <span class="built_in">showPerson</span>(<span class="number">20</span>);</span><br><span class="line">    <span class="comment">// When we pass int 20</span></span><br><span class="line">    <span class="comment">// Reason it works is our compiler knows</span></span><br><span class="line">    <span class="comment">// In this class we have a constructor takes an int</span></span><br><span class="line">    <span class="comment">// It implicitly converse the int to a Person object</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>After declare our single-argument construct with <code>explicit</code> keyword, we can’t pass int to <code>showPerson()</code> anymore. Because after that, our compiler will force us to pass a proper Person object to the function. If we apply <code>explicit</code> keyword, there is no longer a “Convertin Constructor”</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">Person</span><span class="params">(<span class="type">int</span> age)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Constructor-Delegation"><a href="#Constructor-Delegation" class="headerlink" title="Constructor Delegation"></a>Constructor Delegation</h2><p> A constructort can delegate  the initialisation of an object to another constructor. With this feature, we can remove duplicate code. </p>
+<p>Given that <code>Rectangle.h</code></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Rectangle</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Rectangle</span>(<span class="type">int</span> width, <span class="type">int</span> height);</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setWidth</span><span class="params">(<span class="type">int</span> width)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setHeight</span><span class="params">(<span class="type">int</span> height)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getWidth</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getHeight</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> width;</span><br><span class="line">    <span class="type">int</span> height;</span><br><span class="line">    string color;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<p>We have the <code>Rectangle.cpp</code></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Rectangle.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">Rectangle::<span class="built_in">Rectangle</span>(<span class="type">int</span> width, <span class="type">int</span> height)&#123;</span><br><span class="line">    <span class="built_in">setWidth</span>(width);</span><br><span class="line">    <span class="built_in">setHeight</span>(height);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Call another constructor so that we can avoid duplicate code</span></span><br><span class="line"><span class="comment">// colon after the signature to call </span></span><br><span class="line">Rectangle::<span class="built_in">Rectangle</span>(<span class="type">int</span> width, <span class="type">int</span> height, <span class="type">const</span> string&amp; color):<span class="built_in">Rectangle</span>(width,height)&#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;color = color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Rectangle::draw</span><span class="params">()</span></span>&#123; </span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Drawing a rectangle&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Its width is &quot;</span>&lt;&lt; width &lt;&lt; <span class="string">&quot;, its height is &quot;</span> &lt;&lt; height &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Rectangle::getArea</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> width * height ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Rectangle::setHeight</span><span class="params">(<span class="type">int</span> heightInput)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(height &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="built_in">invalid_argument</span>(<span class="string">&quot;Height Error&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    height = heightInput;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Rectangle::setWidth</span><span class="params">(<span class="type">int</span> widthInput)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(width &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="built_in">invalid_argument</span>(<span class="string">&quot;Width Error&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    width = widthInput;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Rectangle::getHeight</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> height;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Rectangle::getWidth</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> width;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>Call another constructor by using <code>:</code> after the curent constructor’s implementation signature, passing all the paramters it should take</li>
+<li>There is no limitation of delegation times, but too much constructor leads to unmaintainable code</li>
+</ul>
+<h2 id="The-Copy-Constructor"><a href="#The-Copy-Constructor" class="headerlink" title="The Copy Constructor"></a>The Copy Constructor</h2><p>Copy constructor is another special constructor,  which is used for copying objects. </p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Rectangle first&#123;<span class="number">10</span>,<span class="number">20</span>,<span class="string">&quot;orange&quot;</span>&#125;;</span><br><span class="line">    Rectangle second = first;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>As for second line <code>Rectangle second = first;</code> , the reason coyping works is because under the hood the compiler automatically generates a copy constructor in the rectangle class . This copy constructor takes source object, and then it copy all the values in the source objects to initialise the second object.</p>
+<p>This automatical work of copy constructor works pretty well all the time, but sometimes there are situations we need to have control of how objects are copied</p>
+<p>Explicitly declare a copy constructor in the header file</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Rectangle</span>(<span class="type">const</span> Rectangle&amp; source); </span><br><span class="line"><span class="comment">// single parameter</span></span><br><span class="line"><span class="comment">// the type of parameter has to be the same as the class </span></span><br><span class="line"><span class="comment">// make it reference parameter</span></span><br><span class="line"><span class="comment">// if we don&#x27;t do so, compiler doesn &#x27;t know how to copy it </span></span><br><span class="line"><span class="comment">// Because the copy operation is defined in this constructor </span></span><br><span class="line"><span class="comment">// also, we should make it a constant parameter</span></span><br><span class="line"><span class="comment">// So we don&#x27;t accidentally modify the source object as part of the copy operation </span></span><br></pre></td></tr></table></figure></div>
+
+<p>In the implementation <code>Rectangle.cpp</code></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Rectangle::<span class="built_in">Rectangle</span>(<span class="type">const</span> Rectangle&amp; source)&#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;width = source.width;</span><br><span class="line">    <span class="keyword">this</span>-&gt;height = soure.height;</span><br><span class="line">    <span class="keyword">this</span>-&gt;color = source.color; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>It’s always best to rely on the copy constructor that the compiler generated for us, because when we have more members added into the class, we have to add more lines to copy more object’s variable members manually.  </p>
+<ul>
+<li>If we pass object directly to a function as parameter, it is gonna be copied </li>
+<li>Use reference we pass the source object to the function </li>
+<li>Every time we pass object as parameter, a copy constructor will be called</li>
+<li></li>
+</ul>
+<p>If we go to implementation file and remove the explicitly created copy constructor then go to header file telling our compiler to delete the copy constructor for us</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Rectangle</span>(<span class="type">const</span> Rectangle&amp; source) = <span class="keyword">delete</span>;</span><br><span class="line"><span class="comment">// If we don&#x27;t include this line</span></span><br><span class="line"><span class="comment">//the compiler will automatically generate another copy constructor for us </span></span><br></pre></td></tr></table></figure></div>
+
+<p>With that we can validate that every time we pass object directly as parameter, copy constuctor will be called, we explicitly deleted the copy constructor then all the function with direct object pass can’t work </p>
+<h2 id="The-Destructor"><a href="#The-Destructor" class="headerlink" title="The Destructor"></a>The Destructor</h2><p> Destructor are automatically called when our object are being destroyed and this is an opportunity for us to free system resources that an object is using. So if we allocate memory or open a file or network connection, then we need to release these resources in destrcutors</p>
+<p>In our header file we type a <code>~</code> followed by the name of the class, similar to constructor, our destructor doesn’t have a return type and the name is exactly the class name :  <code>～Rectangle();</code> We can not overload destructors. Each class can have a maximum of one destructor.</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Rectangle::~Rectangle()&#123;</span><br><span class="line">    cout &lt;&lt; &quot;Destructor called&quot; &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>In main program we have a Rectangle object, this object is declared on stack. So when the main function finishes the execution. This object is going to go out of scope. So it will be destroyed, At that point, the destructor will be called. </p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Rectangle first;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Static-Members"><a href="#Static-Members" class="headerlink" title="Static Members"></a>Static Members</h2><p> All the functions and variables we declared so far is are what we called instance member, this member belong to instances of the <code>Rectangle</code> class, each instance is gonna have its own copies of these members.  We can also declare members that belong to the <code>Rectangle</code> class itself, so we will have only single copy of this member in memory. And this single copy will be shared by all instances. We call it static members</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Rectangle</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">static</span> <span class="type">int</span> objectCounts;</span><br><span class="line">    ~<span class="built_in">Rectangle</span>();</span><br><span class="line">    <span class="built_in">Rectangle</span>(<span class="type">int</span> width, <span class="type">int</span> height);</span><br><span class="line">    <span class="built_in">Rectangle</span>(<span class="type">const</span> Rectangle&amp; source);</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setWidth</span><span class="params">(<span class="type">int</span> width)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setHeight</span><span class="params">(<span class="type">int</span> height)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getWidth</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getHeight</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> width;</span><br><span class="line">    <span class="type">int</span> height;</span><br><span class="line">    string color;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>Whenever we declare a static variable, we should always define it in our implementation <code>.cpp</code> file</li>
+</ul>
+  <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> Rectangle::objectCount = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">Rectangle::<span class="built_in">Rectangle</span>(<span class="type">int</span> width, <span class="type">int</span> height)&#123;</span><br><span class="line">    objectCount++;</span><br><span class="line">    <span class="built_in">setWidth</span>(width);</span><br><span class="line">    <span class="built_in">setHeight</span>(height);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><p>We access static variable member by scope resolution operator and class name <code>ClassName::staticVariable</code> if it is in public section</p>
+</li>
+<li><p>But better practice is put in private section and use line break to separate it from instance members, then define a getter for it</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">static</span> <span class="type">int</span> <span class="title">getObjectCount</span><span class="params">()</span></span>;</span><br><span class="line"><span class="comment">// In header file we need static keyword, in implementation file we remove it</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">ClassName::getObjectCount</span><span class="params">()</span></span>&#123;</span><br><span class="line">     <span class="keyword">return</span> objectCount; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// Call it by ClassName</span></span><br><span class="line">    cout &lt;&lt; Rectangle::<span class="built_in">getObjectCount</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h2 id="Constant-Objects-and-Functions"><a href="#Constant-Objects-and-Functions" class="headerlink" title="Constant Objects and Functions"></a>Constant Objects and Functions</h2><p>  Just like we can declare a constant integer, we can also declare a constant object</p>
+  <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">const</span> Rectangle rectangle;</span><br><span class="line">    <span class="comment">// When we declare an object as constant</span></span><br><span class="line">    <span class="comment">// Our compiler makes all of its attributes constant</span></span><br><span class="line">    <span class="comment">// Which is Read-only and Immutable</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>We can’t modify the attributes of a constant object - They’re read only and immutable</li>
+<li>When we add the keyword <code>const</code> at the end of a function declaration, we are telling the compiler that in this function we’re not gonna change the state of this object</li>
+<li>It’s the best practice that put the <code>const</code> keyword at the end of function declaration if it doesn’t change the state of object</li>
+<li>Compiler doesn’t allow us to use function without <code>const</code> keyword for constant object, because it think there may be some risk that object will be changed in those non-constant functions</li>
+</ul>
+  <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Syntax for constant function in header file</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">getAge</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line"><span class="comment">// Syntax for constant function in implementation file</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">getAge</span><span class="params">()</span> <span class="type">const</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>  A function to get static member, which is static member, we can still call them when we use a constant object without declare it with<code>const</code>. But we should always call it use the <code>ClassName::staticMemberGetter</code></p>
+  <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">const</span> Person meow = <span class="built_in">Person</span>(<span class="string">&quot;Meow&quot;</span>,<span class="number">10000</span>);</span><br><span class="line">    <span class="comment">// Given that peopleCount is a static member of class like below</span></span><br><span class="line">    <span class="comment">// In headerfile</span></span><br><span class="line">    <span class="comment">// static int peopleCount;</span></span><br><span class="line">    <span class="comment">// static int getPeopleCount();</span></span><br><span class="line">    <span class="comment">// In implementation file</span></span><br><span class="line">    <span class="comment">// int getPeopleCount()&#123; return peopleCount; &#125;</span></span><br><span class="line">    <span class="comment">// int People::peopleCount = 0;</span></span><br><span class="line">    <span class="type">int</span> peopleCount = Person::<span class="built_in">getPeopleCount</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>  The reason we can still access it is due to static member is shared by all objects, we can not change it.</p>
+<h2 id="Pointer-to-Objects"><a href="#Pointer-to-Objects" class="headerlink" title="Pointer to Objects"></a>Pointer to Objects</h2><p>  All the object we have created so far is on the stack - which is a part of  memory that automatically cleaned when our object go outside the scope. When the main function finishes execution, the object we created in the main function will go out of scope, the destrcutor of object’s class get called, the memory allocated to this object  will be freed automatically.</p>
+<p>  Object created on stack is useful when they are local to a function, so we don’t need them outside the function. But sometimes we need an object to stay in memory when the function finishes its execution. In this case we need create object on the heap use the new operator </p>
+  <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Rectangle* longerRectangle = <span class="keyword">new</span> <span class="built_in">Rectangle</span>(<span class="number">10</span>,<span class="number">20</span>);</span><br><span class="line">     (*longerRectangle).width;</span><br><span class="line">    longerRectangle-&gt;length;</span><br><span class="line">    <span class="comment">// delete only do operation to the memory </span></span><br><span class="line">    <span class="keyword">delete</span> longerRectangle;</span><br><span class="line">    <span class="comment">// we should make it point to null ptr</span></span><br><span class="line">    <span class="comment">// otherwise it will stick to the address forever</span></span><br><span class="line">    <span class="comment">// we refer to that a dongling pointer</span></span><br><span class="line">    <span class="comment">// it leads to memory leak</span></span><br><span class="line">    longerRectangle = <span class="literal">nullptr</span>; </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>  <code>new</code> operator returns a pointer, in this case Rectangle object pointer, so we store it in a Rectangle pointer.</p>
+<p>  Because it is a pointer, so we can access by arrow operator <code>-&gt;</code> or dot operator<code>.</code> after dereferencing. </p>
+<p>  We can rewrite with smart pointer</p>
+  <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">#<span class="keyword">include</span> <span class="string">&lt;memory&gt;</span></span></span><br><span class="line"> </span><br><span class="line"> <span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// specify the the object we wanna create in angle bracket</span></span><br><span class="line">    unique_ptr&lt;Rectangle&gt; longerRectangle =  <span class="built_in">make_unique</span>&lt;Rectngle &gt;(<span class="number">10</span>,<span class="number">20</span>) ;</span><br><span class="line">    rectangle-&gt;<span class="built_in">draw</span>(); </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></div>
+
+  <img  width="1840" alt="Image" 
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://github.com/user-attachments/assets/1c9cfbaf-0425-4124-a3f1-a3dd61f9302b"
+                      
+                >
+
+  <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> ADVANCED_SMART_POINTER_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ADVANCED_SMART_POINTER_H</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SmartPointer</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// My raw implementation below</span></span><br><span class="line">    <span class="comment">// SmartPointer(int* ptr);</span></span><br><span class="line">    <span class="comment">// single argument constructor need explicit as better practice</span></span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">SmartPointer</span><span class="params">(<span class="type">int</span>* ptr)</span></span>;</span><br><span class="line">    ~<span class="built_in">SmartPointer</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span>* ptr;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure></div>
+
+<p>  then implementation</p>
+  <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;SmartPointer.h&quot;</span></span></span><br><span class="line"></span><br><span class="line">SmartPointer::<span class="built_in">SmartPointer</span>(<span class="type">int</span>* ptr)&#123; </span><br><span class="line">    <span class="keyword">this</span>-&gt;ptr = ptr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SmartPointer::~<span class="built_in">SmartPointer</span>()&#123;</span><br><span class="line">    <span class="keyword">delete</span> ptr;</span><br><span class="line">    ptr = <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>  main.cpp</p>
+  <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;SmartPointer.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    SmartPointer ptr&#123;<span class="keyword">new</span> <span class="type">int</span>&#125;; </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>Use new operator + DataType, we get a return of DataType Pointer, then we use it to initialise the object of SmartPointer Class. </li>
+<li>Use curely braces to initialise the object</li>
+</ul>
+<h2 id="Array-of-Objects"><a href="#Array-of-Objects" class="headerlink" title="Array of Objects"></a>Array of Objects</h2><p>We can create array of Objects just like any other data type.</p>
+<p>There is two ways to generate an array of object</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rectangle recArray[<span class="number">3</span>] = &#123;<span class="built_in">Rectangle</span>(<span class="number">10</span>,<span class="number">20</span>),<span class="built_in">Rectangle</span>(<span class="number">10</span>,<span class="number">20</span>,<span class="string">&quot;blue&quot;</span>),<span class="built_in">Rectangle</span>()&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<p>Here we explicitly call the constructors</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rectangle recArray[<span class="number">3</span>] = &#123; &#123;<span class="number">10</span>,<span class="number">20</span>&#125;,&#123;<span class="number">10</span>,<span class="number">20</span>,<span class="string">&quot;blue&quot;</span>&#125;,&#123;&#125;&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<p>We can also use the brace initialiser, because compiler know each element of array is an instance of Rectangle object, we  directly put the brace initialiser in body of array declaration without giving the data type.</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Code with Mosh in CPP Part Three</li>
+        <li><strong>Author:</strong> Ricardo Pu</li>
+        <li><strong>Created at
+                :</strong> 2025-04-07 01:19:56</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-04-11 12:24:13
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://ricardopotter.github.io/RicardoBlog/2025/04/07/Code-with-Mosh-in-CPP-Part-Three/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/CS-Learning/">#CS Learning</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/CPP/">#CPP</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/Vocabulary/">#Vocabulary</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/English-Learning/">#English Learning</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/SLA/">#SLA</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/RicardoBlog/2025/04/09/Reflection-on-Duplicate-Symbols-A-C-Include-Mishap/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Reflection on Duplicate Symbols: A C++ Include Mishap</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/RicardoBlog/2025/04/04/Reflection-on-Aggregate-Types-in-C/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Reflection on Aggregate Types in C++</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-swup-reload-script
+            src="//cdn.staticfile.org/gitalk/1.8.0/gitalk.min.js"></script>
+    <script data-swup-reload-script>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: 'Ov23liGO2xyBBdllskJp',
+                    clientSecret: '4a88fea52acc1bb7ad9f8b5796eca97de4427af9',
+                    repo: 'RicardoBlog',
+                    owner: 'RicardoPotter',
+                    admin: ['RicardoPotter'],
+                    id: __gitalk__pathname,
+                    language: 'en',
+                    proxy: 'https://github.com/login/oauth/access_token'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Code with Mosh in CPP Part Three</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-OOP"><span class="nav-text">What is OOP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Define-a-Class"><span class="nav-text">Define a Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Creating-Objects"><span class="nav-text">Creating Objects</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Access-Modifier"><span class="nav-text">Access Modifier</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Getters-and-Setters"><span class="nav-text">Getters and Setters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Constructors"><span class="nav-text">Constructors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Member-Initialiser-List"><span class="nav-text">Member Initialiser List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Default-Constructor"><span class="nav-text">The Default Constructor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-the-Explicit-Keyword"><span class="nav-text">Using the Explicit Keyword</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Constructor-Delegation"><span class="nav-text">Constructor Delegation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Copy-Constructor"><span class="nav-text">The Copy Constructor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Destructor"><span class="nav-text">The Destructor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Static-Members"><span class="nav-text">Static Members</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Constant-Objects-and-Functions"><span class="nav-text">Constant Objects and Functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pointer-to-Objects"><span class="nav-text">Pointer to Objects</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-of-Objects"><span class="nav-text">Array of Objects</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/RicardoBlog/">Ricardo Pu</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        40 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/RicardoBlog/js/libs/Swup.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/RicardoBlog/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/RicardoBlog/js/utils.js" type="module"></script>
+
+<script src="/RicardoBlog/js/main.js" type="module"></script>
+
+<script src="/RicardoBlog/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/RicardoBlog/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/RicardoBlog/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/RicardoBlog/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/RicardoBlog/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/RicardoBlog/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/RicardoBlog/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/RicardoBlog/js/tools/runtime.js"></script>
+
+    
+<script src="/RicardoBlog/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/RicardoBlog/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/RicardoBlog/js/libs/Typed.min.js"></script>
+
+  
+<script src="/RicardoBlog/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/RicardoBlog/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/RicardoBlog/js/layouts/toc.js" type="module"></script>
+
+<script src="/RicardoBlog/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>
