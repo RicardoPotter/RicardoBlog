@@ -18,15 +18,15 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Why My Simple C++ String Capitalization Failed - And How to Fix Common Input Mistakes">
+        <meta name="description" content="Why My Simple C++ String Capitalization Failed - And How to Fix Common Input Mistakes: Character Literals vs String Literals, &#96;getline()&#96; and stream understanding...">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Lessons learned from a Simple C++ Capitalisation Function">
 <meta property="og:url" content="https://ricardopotter.github.io/RicardoBlog/2025/03/29/Lessons-learned-from-a-Simple-C-Capitalisation-Function/index.html">
 <meta property="og:site_name" content="Ricardo Pu&#39;s Blog">
-<meta property="og:description" content="Why My Simple C++ String Capitalization Failed - And How to Fix Common Input Mistakes">
+<meta property="og:description" content="Why My Simple C++ String Capitalization Failed - And How to Fix Common Input Mistakes: Character Literals vs String Literals, &#96;getline()&#96; and stream understanding...">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-03-29T16:36:48.000Z">
-<meta property="article:modified_time" content="2025-03-31T23:30:38.074Z">
+<meta property="article:modified_time" content="2025-04-12T20:26:10.443Z">
 <meta property="article:author" content="Ricardo Pu">
 <meta property="article:tag" content="CS Learning">
 <meta property="article:tag" content="CPP">
@@ -725,8 +725,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-04-01 00:30:38</span>
-            <span class="mobile">2025-04-01 00:30:38</span>
+            <span class="desktop">2025-04-12 21:26:10</span>
+            <span class="mobile">2025-04-12 21:26:10</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -852,13 +852,12 @@
 <hr>
 <h2 id="Compiler-Warnings"><a href="#Compiler-Warnings" class="headerlink" title="Compiler Warnings"></a><strong>Compiler Warnings</strong></h2><h3 id="What-the-Compiler-Told-Me"><a href="#What-the-Compiler-Told-Me" class="headerlink" title="What the Compiler Told Me:"></a><strong>What the Compiler Told Me:</strong></h3><ul>
 <li><strong>“Comparison between pointer and integer”</strong> → I compared <code>char</code> with <code>const char*</code>.</li>
-<li><strong>“No viable overloaded ‘+&#x3D;’”</strong> → You tried to add <code>cin</code> to a string.</li>
+<li><strong>“No viable overloaded ‘+&#x3D;’”</strong> → I tried to add <code>cin</code> to a string.</li>
 </ul>
 <hr>
 <h2 id="Final-Corrected-Code-Recap"><a href="#Final-Corrected-Code-Recap" class="headerlink" title="Final Corrected Code (Recap)"></a><strong>Final Corrected Code (Recap)</strong></h2><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">capitalise</span><span class="params">(string raw)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!raw.<span class="built_in">empty</span>() &amp;&amp; raw[<span class="number">0</span>] &gt;= <span class="string">&#x27;a&#x27;</span> &amp;&amp; raw[<span class="number">0</span>] &lt;= <span class="string">&#x27;z&#x27;</span>) &#123;</span><br><span class="line">        raw[<span class="number">0</span>] += (<span class="string">&#x27;A&#x27;</span> - <span class="string">&#x27;a&#x27;</span>);  <span class="comment">// Convert lowercase to uppercase</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> raw;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Please input string: &quot;</span> &lt;&lt; endl;</span><br><span class="line">    string rawString;</span><br><span class="line">    <span class="built_in">getline</span>(cin, rawString);  <span class="comment">// Read entire line</span></span><br><span class="line">    rawString = <span class="built_in">capitalise</span>(rawString);</span><br><span class="line">    cout &lt;&lt; rawString &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<hr>
-<h2 id="Summary-of-Lessons-Learned"><a href="#Summary-of-Lessons-Learned" class="headerlink" title="Summary of Lessons Learned"></a><strong>Summary of Lessons Learned</strong></h2><table>
+<h2 id="Key-Takeaways-for-Future-Code"><a href="#Key-Takeaways-for-Future-Code" class="headerlink" title="Key Takeaways for Future Code:"></a><strong>Key Takeaways for Future Code:</strong></h2><table>
 <thead>
 <tr>
 <th align="left"><strong>Mistake</strong></th>
@@ -886,7 +885,13 @@
 <td align="left"><code>cin</code> is a stream, not a string. Use <code>&gt;&gt;</code> or <code>getline()</code>.</td>
 </tr>
 </tbody></table>
-<h3 id="Key-Takeaways-for-Future-Code"><a href="#Key-Takeaways-for-Future-Code" class="headerlink" title="Key Takeaways for Future Code:"></a><strong>Key Takeaways for Future Code:</strong></h3><p>✅ Be careful with string literals and char literals.<br>✅ Don’t treat cin as if it was a string.<br>✅ Always check for empty strings before accessing elements.<br>✅ Avoid unnecessary copies (let C++ optimise).<br>✅ Learn more about <code>getline()</code> function and enhance the understanding stream.</p>
+<ul>
+<li>Be careful with string literals and char literals. <code>&quot;s&quot;</code> vs <code>&#39;s&#39;</code></li>
+<li>Don’t treat <code>cin</code> as if it was a <code>std::string</code> type variable.</li>
+<li>Always check for empty strings before accessing elements.</li>
+<li>Avoid unnecessary copies (let C++ optimise).</li>
+<li>Learn more about <code>getline()</code> function and enhance the understanding stream.</li>
+</ul>
 
         </div>
 
@@ -901,7 +906,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-04-01 00:30:38
+                    :</strong> 2025-04-12 21:26:10
             </li>
         
         <li>
@@ -1056,7 +1061,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">Lessons learned from a Simple C++ Capitalisation Function</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Original-Code"><span class="nav-text">Original Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Character-vs-String-Literals-z-vs-z"><span class="nav-text">Character vs. String Literals (&#39;z&#39; vs &quot;z&quot;)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Error"><span class="nav-text">Error:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lesson"><span class="nav-text">Lesson:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Correct-Way"><span class="nav-text">Correct Way:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reading-Input-Properly-cin-vs-getline"><span class="nav-text">Reading Input Properly (cin vs getline)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-1"><span class="nav-text">Error:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lesson-1"><span class="nav-text">Lesson:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Correct-Way-1"><span class="nav-text">Correct Way:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Handling-Empty-Strings-Safely"><span class="nav-text">Handling Empty Strings Safely</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-2"><span class="nav-text">Error:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lesson-2"><span class="nav-text">Lesson:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Correct-Way-2"><span class="nav-text">Correct Way:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Avoiding-Unnecessary-Copies"><span class="nav-text">Avoiding Unnecessary Copies</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Original-Code-1"><span class="nav-text">Original Code:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lesson-3"><span class="nav-text">Lesson:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimized-Way"><span class="nav-text">Optimized Way:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Understanding-C-Streams-cin-cout"><span class="nav-text">Understanding C++ Streams (cin, cout)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-3"><span class="nav-text">Error:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lesson-4"><span class="nav-text">Lesson:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Compiler-Warnings"><span class="nav-text">Compiler Warnings</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-the-Compiler-Told-Me"><span class="nav-text">What the Compiler Told Me:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Final-Corrected-Code-Recap"><span class="nav-text">Final Corrected Code (Recap)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary-of-Lessons-Learned"><span class="nav-text">Summary of Lessons Learned</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-Takeaways-for-Future-Code"><span class="nav-text">Key Takeaways for Future Code:</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Original-Code"><span class="nav-text">Original Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Character-vs-String-Literals-z-vs-z"><span class="nav-text">Character vs. String Literals (&#39;z&#39; vs &quot;z&quot;)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Error"><span class="nav-text">Error:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lesson"><span class="nav-text">Lesson:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Correct-Way"><span class="nav-text">Correct Way:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reading-Input-Properly-cin-vs-getline"><span class="nav-text">Reading Input Properly (cin vs getline)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-1"><span class="nav-text">Error:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lesson-1"><span class="nav-text">Lesson:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Correct-Way-1"><span class="nav-text">Correct Way:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Handling-Empty-Strings-Safely"><span class="nav-text">Handling Empty Strings Safely</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-2"><span class="nav-text">Error:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lesson-2"><span class="nav-text">Lesson:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Correct-Way-2"><span class="nav-text">Correct Way:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Avoiding-Unnecessary-Copies"><span class="nav-text">Avoiding Unnecessary Copies</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Original-Code-1"><span class="nav-text">Original Code:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lesson-3"><span class="nav-text">Lesson:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimized-Way"><span class="nav-text">Optimized Way:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Understanding-C-Streams-cin-cout"><span class="nav-text">Understanding C++ Streams (cin, cout)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-3"><span class="nav-text">Error:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lesson-4"><span class="nav-text">Lesson:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Compiler-Warnings"><span class="nav-text">Compiler Warnings</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-the-Compiler-Told-Me"><span class="nav-text">What the Compiler Told Me:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Final-Corrected-Code-Recap"><span class="nav-text">Final Corrected Code (Recap)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Key-Takeaways-for-Future-Code"><span class="nav-text">Key Takeaways for Future Code:</span></a></li></ol>
 
     </div>
 </div>

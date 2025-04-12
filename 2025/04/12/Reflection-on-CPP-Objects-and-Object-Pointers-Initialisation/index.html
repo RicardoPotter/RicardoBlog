@@ -13,20 +13,20 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://ricardopotter.github.io/RicardoBlog/2025/04/12/lessons-learned-from-c-objects-and-object-pointers-initialisation/"/>
+    <link rel="canonical" href="https://ricardopotter.github.io/RicardoBlog/2025/04/12/reflection-on-cpp-objects-and-object-pointers-initialisation/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
         <meta name="description" content="Deeper learning and key-point retold driven by Object Pointer Practice Debugging.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lessons learned from C++ Objects and Object Pointers Initialisation">
-<meta property="og:url" content="https://ricardopotter.github.io/RicardoBlog/2025/04/12/Lessons-learned-from-C-Objects-and-Object-Pointers-Initialisation/index.html">
+<meta property="og:title" content="Reflection on C++ Objects and Object Pointers Initialisation">
+<meta property="og:url" content="https://ricardopotter.github.io/RicardoBlog/2025/04/12/Reflection-on-CPP-Objects-and-Object-Pointers-Initialisation/index.html">
 <meta property="og:site_name" content="Ricardo Pu&#39;s Blog">
 <meta property="og:description" content="Deeper learning and key-point retold driven by Object Pointer Practice Debugging.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-04-12T17:19:35.000Z">
-<meta property="article:modified_time" content="2025-04-12T18:31:31.053Z">
+<meta property="article:modified_time" content="2025-04-12T18:59:48.622Z">
 <meta property="article:author" content="Ricardo Pu">
 <meta property="article:tag" content="CS Learning">
 <meta property="article:tag" content="CPP">
@@ -45,7 +45,7 @@
     
     <title>
         
-            Lessons learned from C++ Objects and Object Pointers Initialisation -
+            Reflection on C++ Objects and Object Pointers Initialisation -
         
         Ricardo&#39;s Blog
     </title>
@@ -697,7 +697,7 @@
         <div class="article-title relative w-full">
             
                 <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Lessons learned from C++ Objects and Object Pointers Initialisation</h1>
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Reflection on C++ Objects and Object Pointers Initialisation</h1>
                 </div>
             
             </div>
@@ -725,8 +725,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-04-12 19:31:31</span>
-            <span class="mobile">2025-04-12 19:31:31</span>
+            <span class="desktop">2025-04-12 19:59:48</span>
+            <span class="mobile">2025-04-12 19:59:48</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -921,18 +921,18 @@
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> Lessons learned from C++ Objects and Object Pointers Initialisation</li>
+        <li><strong>Title:</strong> Reflection on C++ Objects and Object Pointers Initialisation</li>
         <li><strong>Author:</strong> Ricardo Pu</li>
         <li><strong>Created at
                 :</strong> 2025-04-12 18:19:35</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-04-12 19:31:31
+                    :</strong> 2025-04-12 19:59:48
             </li>
         
         <li>
-            <strong>Link:</strong> https://ricardopotter.github.io/RicardoBlog/2025/04/12/Lessons-learned-from-C-Objects-and-Object-Pointers-Initialisation/
+            <strong>Link:</strong> https://ricardopotter.github.io/RicardoBlog/2025/04/12/Reflection-on-CPP-Objects-and-Object-Pointers-Initialisation/
         </li>
         <li>
             <strong>
@@ -1067,7 +1067,7 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">Lessons learned from C++ Objects and Object Pointers Initialisation</div>
+        <div class="page-title">Reflection on C++ Objects and Object Pointers Initialisation</div>
         <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Initial-Code"><span class="nav-text">The Initial Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#All-Traps-about-String-Literal-Peter"><span class="nav-text">All Traps about String Literal &quot;Peter&quot;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#String-Literal-Type-in-C"><span class="nav-text">String Literal Type in C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-to-Pointer-Decay"><span class="nav-text">Array-to-Pointer Decay</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-Not-std-string"><span class="nav-text">Why Not std::string?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#My-Specific-Case"><span class="nav-text">My Specific Case</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-Brace-Initialisation-Fails-in-Earlier-C"><span class="nav-text">Why Brace Initialisation Fails in Earlier C++</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Temporary-Objects-Are-Dangerous"><span class="nav-text">Temporary Objects Are Dangerous</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-text">Conclusion</span></a></li></ol>
 
     </div>
