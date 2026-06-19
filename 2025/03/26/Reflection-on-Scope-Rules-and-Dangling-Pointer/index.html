@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Ricardo Pu">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://ricardopotter.github.io/RicardoBlog/2025/03/26/reflection-on-scope-rules-and-dangling-pointer/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Reflection on pointer reassignment bug. Related with Scope Rules in C++, Dangling Pointer concept and &#96;sizeof()&#96;&#x2F;&#96;size()&#96; function.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reflection on Scope Rules and Dangling Pointer">
+<meta property="og:url" content="https://ricardopotter.github.io/RicardoBlog/2025/03/26/Reflection-on-Scope-Rules-and-Dangling-Pointer/index.html">
+<meta property="og:site_name" content="Ricardo Pu&#39;s Blog">
+<meta property="og:description" content="Reflection on pointer reassignment bug. Related with Scope Rules in C++, Dangling Pointer concept and &#96;sizeof()&#96;&#x2F;&#96;size()&#96; function.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-03-26T17:15:31.000Z">
+<meta property="article:modified_time" content="2026-06-14T07:25:03.678Z">
+<meta property="article:author" content="Ricardo Pu">
+<meta property="article:tag" content="CS Learning">
+<meta property="article:tag" content="CPP">
+<meta property="article:tag" content="Vocabulary">
+<meta property="article:tag" content="English Learning">
+<meta property="article:tag" content="SLA">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg">
+    <meta name="theme-color" content="#008080">
+    <link rel="shortcut icon" href="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Reflection on Scope Rules and Dangling Pointer -
+        
+        Ricardo&#39;s Blog
+    </title>
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/RicardoBlog/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/RicardoBlog/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    
+        
+<script src="/RicardoBlog/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"ricardopotter.github.io","root":"/RicardoBlog/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":5,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#008080","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Ricardo's Blog","subtitle":{"text":["躲进小楼成一统","汉堡中的生菜","乌鸦的世界天鹅也有罪"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/RicardoMiles","instagram":"https://www.instagram.com/ricardomilesgarcia/","zhihu":null,"twitter":null,"email":"pujinjian@hotmail.com","steam":"https://steamcommunity.com/profiles/76561198400981711/","weibo":"https://weibo.com/u/3226308805"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-solid fa-folder"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/About","Github":"https://github.com/RicardoMiles","Github2":"https://github.com/RicardoPotter","Blog":"https://ricardopotter.github.io/","Friends":"/Links"}},"Links":{"icon":"fa-regular fa-link","submenus":{"子昂的博客":"https://supgoon.com/","Google":"https://google.com","ChatGPT":"https://chatgpt.com/"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":"躲进小楼成一统","show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"Links":{"path":"/links","icon":"fa-regular fa-link"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":10}},"footerStart":"2024/02/19 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/RicardoBlog/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Ricardo&#39;s Blog
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [40,0],
+                translateZ: 0,
+                opacity: [0,1],
+                filter: ['blur(5px)', 'blur(0px)'], // Starting from blurred to unblurred
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i,
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0,-40],
+                opacity: [1,0],
+                filter: ['blur(0px)', 'blur(5px)'], // Ending from unblurred to blurred
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: (el, i) => 100 + 30 * i,
+                complete: function() {
+                    hidePreloader(); // Call hidePreloader after the animation completes
+                }
+            });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+                <a class="logo-image" href="/RicardoBlog/">
+                    <img src="/RicardoBlog/images/Ricardo%E8%92%B2Logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/RicardoBlog/">
+                
+                Ricardo&#39;s Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/tags"
+                                        >
+                                    <i class="fa-regular fa-tags fa-fw"></i>
+                                    TAGS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/RicardoBlog/categories"
+                                        >
+                                    <i class="fa-solid fa-folder fa-fw"></i>
+                                    CATEGORIES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/RicardoBlog/About">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/RicardoMiles">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/RicardoPotter">
+                                                    GITHUB2
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="https://ricardopotter.github.io/">
+                                                    BLOG
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/RicardoBlog/Links">
+                                                    FRIENDS
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-link fa-fw"></i>
+                                    LINKS
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://supgoon.com/">
+                                                    子昂的博客
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://google.com">
+                                                    GOOGLE
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://chatgpt.com/">
+                                                    CHATGPT
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/tags"
+                        >
+                            <span>
+                                TAGS
+                            </span>
+                            
+                                <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/RicardoBlog/categories"
+                        >
+                            <span>
+                                CATEGORIES
+                            </span>
+                            
+                                <i class="fa-solid fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/RicardoBlog/About">ME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/RicardoMiles">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/RicardoPotter">GITHUB2</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="https://ricardopotter.github.io/">BLOG</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/RicardoBlog/Links">FRIENDS</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-Links"
+                        >
+                            <span>
+                                LINKS
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-Links">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://supgoon.com/">子昂的博客</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://google.com">GOOGLE</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://chatgpt.com/">CHATGPT</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+                    
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/RicardoBlog/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">42</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/RicardoBlog/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/RicardoBlog/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">50</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Reflection on Scope Rules and Dangling Pointer</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/RicardoBlog/images/AcatarPic.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Ricardo Pu</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-03-26 17:15:31</span>
+        <span class="mobile">2025-03-26 17:15:31</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2026-06-14 08:25:03</span>
+            <span class="mobile">2026-06-14 08:25:03</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/RicardoBlog/categories/Coding/">Coding</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/RicardoBlog/tags/CS-Learning/">CS Learning</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/RicardoBlog/tags/CPP/">CPP</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/RicardoBlog/tags/Vocabulary/">Vocabulary</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/RicardoBlog/tags/English-Learning/">English Learning</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/RicardoBlog/tags/SLA/">SLA</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <p>Reflection on pointer reassignment bug. Related with Scope Rules in C++, Dangling Pointer concept and <code>sizeof()</code> &#x2F; <code>size()</code> function.</p>
+<h2 id="The-Root-Error"><a href="#The-Root-Error" class="headerlink" title="The Root Error"></a>The Root Error</h2><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123; </span><br><span class="line">    <span class="type">int</span>* numbers = <span class="keyword">new</span> <span class="type">int</span>[<span class="number">5</span>];</span><br><span class="line">    <span class="type">int</span> entries = <span class="number">0</span>;</span><br><span class="line">    <span class="type">bool</span> resized = <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Constantly ask users to enter a number</span></span><br><span class="line">    <span class="comment">// Store it to our array</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Number: &quot;</span>;</span><br><span class="line">        cin &gt;&gt; numbers[entries];</span><br><span class="line">        <span class="comment">// check whether it is a valid number or not</span></span><br><span class="line">        <span class="comment">// if cin.fail() returns True means</span></span><br><span class="line">        <span class="comment">// users enter something can&#x27;t be converted to a number</span></span><br><span class="line">        <span class="comment">// we&#x27;re gonna break out of this loop</span></span><br><span class="line">        <span class="keyword">if</span>(cin.<span class="built_in">fail</span>())&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// otherwise we&#x27;re going to increase entries by 1</span></span><br><span class="line">        entries++;</span><br><span class="line">        <span class="comment">// Resize the array when it is full</span></span><br><span class="line">        <span class="keyword">if</span>(entries == <span class="number">5</span>)&#123;</span><br><span class="line">            <span class="comment">// Create a temp array (twice the size)</span></span><br><span class="line">            <span class="comment">// Copy all the elements</span></span><br><span class="line">            <span class="comment">// Have &quot;numbers&quot; pointer point to the new array</span></span><br><span class="line">            <span class="type">int</span> arraySize = <span class="built_in">sizeof</span>(numbers)/<span class="built_in">sizeof</span>(numbers[<span class="number">0</span>]);</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;The arraySize = &quot;</span> &lt;&lt; arraySize &lt;&lt; endl;</span><br><span class="line">            <span class="type">int</span> extendedSize = <span class="number">2</span> * arraySize;</span><br><span class="line">            <span class="type">int</span>* temp = <span class="keyword">new</span> <span class="type">int</span>[<span class="number">10</span>];</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; arraySize; i++)&#123;</span><br><span class="line">                temp[i] = numbers[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">delete</span>[] numbers;</span><br><span class="line">            <span class="type">int</span>* numbers = &amp;(temp[<span class="number">0</span>]);</span><br><span class="line">            resized = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// loop to print user-entered numbers so far</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; entries; i++)&#123;</span><br><span class="line">        cout &lt;&lt; numbers[i] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(resized)&#123;</span><br><span class="line">        <span class="keyword">delete</span>[] numbers;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>When I compiled the code and make it run, bugs emerges like below:</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">PureCppExercise % ./ResizeArray                      </span><br><span class="line">Number: 1</span><br><span class="line">Number: 2</span><br><span class="line">Number: 3</span><br><span class="line">Number: 4</span><br><span class="line">Number: 5</span><br><span class="line">The arraySize = 2</span><br><span class="line">Number: 6</span><br><span class="line">Number: 7</span><br><span class="line">Number: _</span><br><span class="line">-392708096</span><br><span class="line">46369</span><br><span class="line">0</span><br><span class="line">0</span><br><span class="line">0</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">ResizeArray(98894,0x1e6263840) malloc: *** error for object 0x6000029cc000: pointer being freed was not allocated</span><br><span class="line">ResizeArray(98894,0x1e6263840) malloc: *** set a breakpoint in malloc_error_break to debug</span><br><span class="line">zsh: abort      ./ResizeArray</span><br></pre></td></tr></table></figure></div>
+
+<p>There are at 3 issues</p>
+<ul>
+<li>Failure in malloc operation <code>*** error for object 0x6000029cc000: pointer being freed was not allocated</code></li>
+<li>The <code>arraySize</code> calculation is improper.</li>
+<li>Junction values showed in output</li>
+</ul>
+<p>Related concept and mechanism questions I had</p>
+<ul>
+<li>Scope Rules in C++ from compiler’s POV</li>
+<li>Dangling Pointer</li>
+<li>The difference between destroying a pointer and destroying the memory block a pointer points to.</li>
+<li>The calculation method variation on Fixed Array and Dynamic Array<ul>
+<li>Why <code>sizeof(arrayVariableName)/sizeof(arrayVariableName[0])</code> works for fixed-size arrays but not for dynamic arrays</li>
+<li>Why the size information of dynamic arrays is lost at runtime</li>
+<li>Why <code>sizeof()</code> behaves differently for fixed-size arrays and dynamic arrays</li>
+</ul>
+</li>
+</ul>
+<h2 id="Outside-Scope-Issue"><a href="#Outside-Scope-Issue" class="headerlink" title="Outside Scope Issue"></a>Outside Scope Issue</h2><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span>[] numbers;</span><br><span class="line"><span class="type">int</span>* numbers = &amp;(temp[<span class="number">0</span>]);</span><br><span class="line">resized = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>It led to a change in its scope. </p>
+<ul>
+<li><strong>I redefined a <code>numbers</code> in those 3 lines. It is impossible to free this inner one.</strong></li>
+<li>The redefined <code>numbers</code> pointer(inner one) <strong>shadows</strong> the outer <code>numbers</code>.</li>
+<li>When the inner <code>numbers</code>active, the outer one still alive, but hide away.</li>
+<li>The inner one binding with <code>temp</code> will die outside of if condition.</li>
+<li>When <code>if</code> block finishes execution (the <code>if</code> block inside the <code>while</code> loop), there is still an <code>numbers</code>. (Original one but had been freed already inside <code>if</code> block)</li>
+<li>The deallocation error is due to <code>delete</code> operator couldn’t free a memory block that never be allocated : <strong>Both</strong> original memory block outer <code>numbers</code> points to <strong>AND</strong> memory block inner <code>numbers</code> points to <strong>don’t exist anymore.</strong><ul>
+<li>The memory block that original outer pointer pointed to had been freed inside the <code>if</code> block, it was bind with a memory without allocation, it became dangling pointer. When we execute the last <code>delete</code> operation narrowly before <code>return 0;</code>, the address it points to &amp; the memory it bind with has no allocation. </li>
+<li>Inner <code>numbers</code> pointer is a local pointer variable to <code>if</code> block, it has already died after execution of <code>if</code> condition. When we execute the last <code>delete</code> operation narrowly before <code>return 0;</code>, there is no inner <code>numbers</code> anymore.</li>
+</ul>
+</li>
+</ul>
+<p>Since the lifetime of a pointer variable depends on its scope, I should just avoid redefining the <code>numbers</code> pointer. When I <code>delete[] numbers</code>, only the original memory block <code>numbers</code> pointed to was being freed, original <code>numbers</code> pointer itself was still alive. <strong>I don’t need to redefine an existing pointer.</strong></p>
+<p>The outer <code>numbers</code> pointer is local variable of <code>main()</code> function, which means it is the so-called “global variable” to <code>if</code> block.</p>
+<p>So, fix <code>int* numbers = &amp;(temp[0])</code> by <code>numbers = temp[0]</code>  or <code>numbers = temp</code>. </p>
+<h3 id="Scope-Rules-in-C-Shadowing-Mechanics"><a href="#Scope-Rules-in-C-Shadowing-Mechanics" class="headerlink" title="Scope Rules in C++  (Shadowing Mechanics)"></a>Scope Rules in C++  (Shadowing Mechanics)</h3><p>In C++, scopes are nested. When we define a variable with the same name in a nested scope, this inner variable <strong>shadows</strong> the outer variable. This means that within the nested scope, any reference to the variable name will refer to the inner variable, not the outer one.</p>
+<h3 id="Compiler’s-Actions"><a href="#Compiler’s-Actions" class="headerlink" title="Compiler’s Actions"></a>Compiler’s Actions</h3><ol>
+<li><strong>Variable Definition</strong>:<ul>
+<li>The compiler records each variable’s definition location and scope.</li>
+<li>When entering the <code>if</code> block, it records a new definition for <code>numbers</code> with a scope limited to the <code>if</code> block.</li>
+</ul>
+</li>
+<li><strong>Variable Reference</strong>:<ul>
+<li>Within the <code>if</code> block, any reference to <code>numbers</code> is resolved to the inner scope’s variable.</li>
+<li>Outside the <code>if</code> block, references to <code>numbers</code> resolve to the outer scope’s variable.</li>
+</ul>
+</li>
+<li><strong>Scope End</strong>:<ul>
+<li>When the <code>if</code> block ends, the inner scope’s <code>numbers</code> is destroyed, but the outer scope’s <code>numbers</code> remains.</li>
+</ul>
+</li>
+</ol>
+<h2 id="Size-Calculation-Variation"><a href="#Size-Calculation-Variation" class="headerlink" title="Size Calculation Variation"></a>Size Calculation Variation</h2><p>I got 2 from the calculation of  a 5-size dynamic array, which is very weird.</p>
+<h3 id="Why-sizeof-works-for-fixed-size-arrays-but-not-for-dynamic-arrays"><a href="#Why-sizeof-works-for-fixed-size-arrays-but-not-for-dynamic-arrays" class="headerlink" title="Why sizeof() works for fixed-size arrays but not for dynamic arrays"></a>Why <code>sizeof()</code> works for fixed-size arrays but not for dynamic arrays</h3><ul>
+<li><p><strong>For fixed-size arrays</strong> (e.g., <code>int numbers[5];</code>), <code>sizeof(arrayVariableName)</code> gives the total size of the array in bytes, and <code>sizeof(arrayVariableName[0])</code> gives the size of one element in the array. <strong>By dividing the total size by the size of one element, we get the number of elements in the array.</strong> This works because the size of fixed-size arrays is determined at compile time, and the compiler knows the total size of the array.</p>
+</li>
+<li><p><strong>For dynamic arrays</strong> (e.g., <code>int* numbers = new int[5];</code>), <code>numbers</code> is a pointer, and <code>sizeof(numbers)</code> returns the size of the pointer itself (usually 4 or 8 bytes), not the size of the array it points to. Therefore, <code>sizeof(numbers)/sizeof(numbers[0])</code> does not correctly calculate the size of the array.</p>
+</li>
+</ul>
+<h3 id="Why-the-size-information-of-dynamic-arrays-is-lost-at-runtime"><a href="#Why-the-size-information-of-dynamic-arrays-is-lost-at-runtime" class="headerlink" title="Why the size information of dynamic arrays is lost at runtime"></a>Why the size information of dynamic arrays is lost at runtime</h3><ul>
+<li>Because when we allocate a dynamic array using <code>new</code>, we get a pointe  to the first element of the array as return.</li>
+<li>This pointer <strong>does not store any information about the size</strong> of the array. </li>
+<li>Therefore, once the array is allocated, its size information is no longer tracked unless we manually save this information. </li>
+<li><strong>In brief, it’s due to the feature of <code>new</code> operator that returns only the first element’s address!</strong></li>
+</ul>
+<h3 id="Why-sizeof-behaves-differently-for-fixed-size-arrays-and-dynamic-arrays"><a href="#Why-sizeof-behaves-differently-for-fixed-size-arrays-and-dynamic-arrays" class="headerlink" title="Why sizeof() behaves differently for fixed-size arrays and dynamic arrays"></a>Why <code>sizeof()</code> behaves differently for fixed-size arrays and dynamic arrays</h3><p><strong>My question: I thought both fixed-size arrays and dynamic arrays are indeed treated as pointers, but why <code>sizeof()</code> function returns different value when they are same size?</strong></p>
+<p>From the compiler’s perspective, both fixed-size arrays and dynamic arrays are indeed treated as pointers in many contexts, but their behavior and semantics differ. <strong>For fixed-size arrays</strong>, the array name typically decays to a pointer to the first element of the array in most contexts, <strong>but in the <code>sizeof</code> operation, the array name does not decay to a pointer.</strong> Instead, it represents the entire array. Therefore, <code>sizeof(arrayVariableName)</code> gives the size of the entire array.</p>
+<p><strong>For dynamic arrays</strong>, <code>numbers</code> is a pointer, and <code>sizeof(numbers)</code> returns the size of the pointer itself, not the size of the array it points to. This is because the size information of dynamic arrays is lost at runtime, and the compiler cannot know the actual size of the array that the pointer points to.</p>
+<h2 id="Pointer-Persistence-v-s-Memory-Deallocation"><a href="#Pointer-Persistence-v-s-Memory-Deallocation" class="headerlink" title="Pointer Persistence v.s. Memory Deallocation"></a>Pointer Persistence v.s. Memory Deallocation</h2><p>Deleting the memory block a pointer refers to (using <code>delete</code> or <code>delete[]</code>) does <strong>not</strong> destroy the pointer variable itself. The pointer still exists, but the memory it points to has been deallocated. Accessing this memory after it’s been freed results in <strong>undefined behaviour</strong>.</p>
+<p><strong>Lifetime of the pointer variable:</strong></p>
+<ul>
+<li>The lifetime of a pointer variable depends on its scope.</li>
+<li>If it is a <strong>local variable</strong>, it will be destroyed when it goes out of scope.</li>
+<li>If it is a <strong>global variable</strong> or a <strong>member variable</strong> of a class, its lifetime is determined by the lifetime of its enclosing context.</li>
+</ul>
+<p><strong>SOP for pointer working with dynamic allocated stuff on heap</strong></p>
+<ul>
+<li><code>new</code> operator to allocate the momory, bind the address with pointer variable</li>
+<li>……</li>
+<li><code>delete</code> + <code>pointer_variable_name</code> to deallocate the memory pointer points to </li>
+<li>Assign <code>nullptr</code> to the pointer varaible for avoiding dangling pointer.</li>
+</ul>
+<h2 id="Dangling-Pointer"><a href="#Dangling-Pointer" class="headerlink" title="Dangling Pointer"></a>Dangling Pointer</h2><p>A dangling pointer refers to a pointer that continues to reference a memory location that has already been deallocated or no longer valid.</p>
+<ol>
+<li><strong>Memory Deallocation</strong>: When the memory that a pointer points to is freed using <code>delete</code> (in C++) or <code>free</code> (in C), the pointer still holds the address of the freed memory. <strong>MY SITUATION</strong></li>
+<li><strong>Local Variable Out of Scope</strong>: When a pointer points to a local variable, and the scope of that local variable ends, the pointer becomes dangling.</li>
+<li><strong>Returning Address of Local Variable</strong>: When a function returns the address of a local variable, the local variable is destroyed when the function ends, making the returned pointer invalid</li>
+</ol>
+<p>The dangling pointer in my program led to deallocation failure crash.</p>
+<h2 id="Why-Garbage-Values"><a href="#Why-Garbage-Values" class="headerlink" title="Why Garbage Values"></a>Why Garbage Values</h2><p>Although I avoid using the <code>arraySize</code> by substituting it with 10, the <code>for</code> loop still uses <code>arraySize</code> as edging case. (Which is incorrect calculation resulted by misunderstanding of <code>sizeof()</code> function). Using  <code>2</code> means the rest of 10-size <code>temp</code> will be filled in by garbage values automatically. </p>
+<p>I had already use the correct way to track the size of dynamic array, but I didn’t realised its function. The <code>entries</code> is the actual size I should use for edge case of for loop.</p>
+<h2 id="Final-Fix"><a href="#Final-Fix" class="headerlink" title="Final Fix"></a>Final Fix</h2><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> capbility = <span class="number">5</span>;</span><br><span class="line">    <span class="type">int</span>* numbers = <span class="keyword">new</span> <span class="type">int</span>[capbility];</span><br><span class="line">    <span class="type">int</span> entries = <span class="number">0</span>;   <span class="comment">// Use a variable to track the entry point</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="comment">// Ask for number from user, then store in numbers</span></span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Number: &quot;</span>;</span><br><span class="line">        cin &gt;&gt; numbers[entries];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Check whether it is a valid number or not</span></span><br><span class="line">        <span class="keyword">if</span> (cin.<span class="built_in">fail</span>()) &#123;</span><br><span class="line">            cin.<span class="built_in">clear</span>(); <span class="comment">// Clear the error state</span></span><br><span class="line">            cin.<span class="built_in">ignore</span>(numeric_limits&lt;streamsize&gt;::<span class="built_in">max</span>(), <span class="string">&#x27;\n&#x27;</span>); <span class="comment">// Ignore the invalid input</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Otherwise, we&#x27;re going to increase entries by 1</span></span><br><span class="line">        entries++;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Resize the array when it is full</span></span><br><span class="line">        <span class="keyword">if</span> (entries == capbility) &#123;</span><br><span class="line">            <span class="comment">// Create a temp array (twice the size)</span></span><br><span class="line">            <span class="comment">// Copy all the elements</span></span><br><span class="line">            <span class="comment">// Have &quot;numbers&quot; pointer point to the new array</span></span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;The arraySize = &quot;</span> &lt;&lt; capbility &lt;&lt; endl;</span><br><span class="line">            <span class="type">int</span> extendedSize = <span class="number">2</span> * capbility;</span><br><span class="line">            <span class="type">int</span>* temp = <span class="keyword">new</span> <span class="type">int</span>[<span class="number">10</span>];</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; capbility; i++) &#123;</span><br><span class="line">                temp[i] = numbers[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">delete</span>[] numbers;</span><br><span class="line">            numbers = temp; <span class="comment">// Update the pointer to the new array</span></span><br><span class="line">            capbility = extendedSize;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Loop to print user-entered numbers so far</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; entries; i++) &#123;</span><br><span class="line">        cout &lt;&lt; numbers[i] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Free the allocated memory</span></span><br><span class="line">    <span class="keyword">delete</span>[] numbers;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>Use <code>capbility</code> to give full access to infinite dynamic allocation and avoiding magic number.</li>
+<li>Fix the incorrect logic to update <code>numbers</code> pointer and its deallocation process.</li>
+<li>Avoid using <code>sizeof()</code> function to track the size of dynamic allocated array.</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Reflection on Scope Rules and Dangling Pointer</li>
+        <li><strong>Author:</strong> Ricardo Pu</li>
+        <li><strong>Created at
+                :</strong> 2025-03-26 17:15:31</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2026-06-14 08:25:03
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://ricardopotter.github.io/RicardoBlog/2025/03/26/Reflection-on-Scope-Rules-and-Dangling-Pointer/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/CS-Learning/">#CS Learning</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/CPP/">#CPP</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/Vocabulary/">#Vocabulary</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/English-Learning/">#English Learning</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/RicardoBlog/tags/SLA/">#SLA</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/RicardoBlog/2025/03/29/Lessons-Learned-from-a-Simple-CPP-Capitalisation-Function/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Lessons learned from a Simple C++ Capitalisation Function</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/RicardoBlog/2025/03/10/Reflection-on-My-Implementation-of-Bubble-Sort/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Reflection on My Implementation of Bubble Sort</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-swup-reload-script
+            src="//cdn.staticfile.org/gitalk/1.8.0/gitalk.min.js"></script>
+    <script data-swup-reload-script>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: 'Ov23liGO2xyBBdllskJp',
+                    clientSecret: '4a88fea52acc1bb7ad9f8b5796eca97de4427af9',
+                    repo: 'RicardoBlog',
+                    owner: 'RicardoPotter',
+                    admin: ['RicardoPotter'],
+                    id: __gitalk__pathname,
+                    language: 'en',
+                    proxy: 'https://github.com/login/oauth/access_token'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Reflection on Scope Rules and Dangling Pointer</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Root-Error"><span class="nav-text">The Root Error</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Outside-Scope-Issue"><span class="nav-text">Outside Scope Issue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scope-Rules-in-C-Shadowing-Mechanics"><span class="nav-text">Scope Rules in C++  (Shadowing Mechanics)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Compiler%E2%80%99s-Actions"><span class="nav-text">Compiler’s Actions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Size-Calculation-Variation"><span class="nav-text">Size Calculation Variation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-sizeof-works-for-fixed-size-arrays-but-not-for-dynamic-arrays"><span class="nav-text">Why sizeof() works for fixed-size arrays but not for dynamic arrays</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-the-size-information-of-dynamic-arrays-is-lost-at-runtime"><span class="nav-text">Why the size information of dynamic arrays is lost at runtime</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-sizeof-behaves-differently-for-fixed-size-arrays-and-dynamic-arrays"><span class="nav-text">Why sizeof() behaves differently for fixed-size arrays and dynamic arrays</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pointer-Persistence-v-s-Memory-Deallocation"><span class="nav-text">Pointer Persistence v.s. Memory Deallocation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dangling-Pointer"><span class="nav-text">Dangling Pointer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-Garbage-Values"><span class="nav-text">Why Garbage Values</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Final-Fix"><span class="nav-text">Final Fix</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2026&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/RicardoBlog/">Ricardo Pu</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        50 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/RicardoBlog/js/libs/Swup.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/RicardoBlog/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/RicardoBlog/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/RicardoBlog/js/utils.js" type="module"></script>
+
+<script src="/RicardoBlog/js/main.js" type="module"></script>
+
+<script src="/RicardoBlog/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/RicardoBlog/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/RicardoBlog/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/RicardoBlog/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/RicardoBlog/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/RicardoBlog/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/RicardoBlog/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/RicardoBlog/js/tools/runtime.js"></script>
+
+    
+<script src="/RicardoBlog/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/RicardoBlog/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/RicardoBlog/js/libs/Typed.min.js"></script>
+
+  
+<script src="/RicardoBlog/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/RicardoBlog/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/RicardoBlog/js/layouts/toc.js" type="module"></script>
+
+<script src="/RicardoBlog/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>
